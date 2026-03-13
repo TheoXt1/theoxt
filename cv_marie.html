@@ -20,18 +20,24 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            /* Force l'impression des couleurs sur TOUS les éléments */
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+            color-adjust: exact !important;
         }
 
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
             background-color: #e5e7eb;
             color: var(--text-dark);
-            -webkit-print-color-adjust: exact;
-            print-color-adjust: exact;
         }
 
         /* --- Print Styles pour un PDF A4 parfait --- */
         @media print {
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
             @page {
                 size: A4;
                 margin: 0;
@@ -101,7 +107,7 @@
             right: -5px;
             width: 35px;
             height: 35px;
-            background: var(--primary);
+            background: var(--primary) !important;
             border: 4px solid #f0fdf4;
             border-radius: 10px;
             display: flex;
@@ -126,7 +132,7 @@
             content: '';
             flex: 1;
             height: 2px;
-            background: #d1fae5;
+            background: #d1fae5 !important;
             border-radius: 1px;
         }
 
@@ -144,7 +150,7 @@
             width: 10px;
             height: 10px;
             border-radius: 50%;
-            background: var(--primary);
+            background: var(--primary) !important;
             box-shadow: 0 0 0 4px #ecfdf5;
         }
 
@@ -155,7 +161,7 @@
             top: 1.5rem;
             bottom: -0.5rem;
             width: 2px;
-            background: #d1fae5;
+            background: #d1fae5 !important;
         }
 
         .timeline-item:last-child::after { display: none; }
@@ -214,7 +220,7 @@
                     <h3 class="section-title"><i class="fa-solid fa-id-card"></i> Contact</h3>
                     <div class="space-y-3">
                         <a href="tel:0611952318" class="flex items-center gap-3 group">
-                            <div class="w-8 h-8 rounded-lg bg-white flex items-center justify-center text-emerald-600 group-hover:bg-emerald-600 group-hover:text-white transition-colors shadow-sm text-sm">
+                            <div class="w-8 h-8 rounded-lg bg-white flex items-center justify-center text-emerald-600 group-hover:bg-emerald-600 group-hover:text-white transition-colors shadow-sm text-sm" style="background-color: white !important;">
                                 <i class="fa-solid fa-phone"></i>
                             </div>
                             <div>
@@ -223,7 +229,7 @@
                             </div>
                         </a>
                         <a href="mailto:mm.moutte@icloud.com" class="flex items-center gap-3 group">
-                            <div class="w-8 h-8 rounded-lg bg-white flex items-center justify-center text-emerald-600 group-hover:bg-emerald-600 group-hover:text-white transition-colors shadow-sm text-sm">
+                            <div class="w-8 h-8 rounded-lg bg-white flex items-center justify-center text-emerald-600 group-hover:bg-emerald-600 group-hover:text-white transition-colors shadow-sm text-sm" style="background-color: white !important;">
                                 <i class="fa-solid fa-envelope"></i>
                             </div>
                             <div class="overflow-hidden">
@@ -232,7 +238,7 @@
                             </div>
                         </a>
                         <div class="flex items-center gap-3">
-                            <div class="w-8 h-8 rounded-lg bg-white flex items-center justify-center text-emerald-600 shadow-sm text-sm">
+                            <div class="w-8 h-8 rounded-lg bg-white flex items-center justify-center text-emerald-600 shadow-sm text-sm" style="background-color: white !important;">
                                 <i class="fa-solid fa-location-dot"></i>
                             </div>
                             <div>
@@ -247,10 +253,10 @@
                 <section>
                     <h3 class="section-title"><i class="fa-solid fa-gear"></i> Atouts</h3>
                     <div class="flex flex-wrap gap-1.5">
-                        <span class="bg-emerald-600 text-white px-2 py-1 rounded-md text-[11px] font-bold">Rigueur</span>
-                        <span class="bg-emerald-600 text-white px-2 py-1 rounded-md text-[11px] font-bold">Empathie</span>
-                        <span class="bg-emerald-600 text-white px-2 py-1 rounded-md text-[11px] font-bold">Organisation</span>
-                        <span class="bg-white text-emerald-700 border border-emerald-100 px-2 py-1 rounded-md text-[11px] font-bold italic">Anglais (B1)</span>
+                        <span class="bg-emerald-600 text-white px-2 py-1 rounded-md text-[11px] font-bold" style="background-color: #059669 !important;">Rigueur</span>
+                        <span class="bg-emerald-600 text-white px-2 py-1 rounded-md text-[11px] font-bold" style="background-color: #059669 !important;">Empathie</span>
+                        <span class="bg-emerald-600 text-white px-2 py-1 rounded-md text-[11px] font-bold" style="background-color: #059669 !important;">Organisation</span>
+                        <span class="bg-white text-emerald-700 border border-emerald-100 px-2 py-1 rounded-md text-[11px] font-bold italic" style="background-color: white !important;">Anglais (B1)</span>
                     </div>
                 </section>
 
@@ -258,7 +264,7 @@
                 <section>
                     <h3 class="section-title"><i class="fa-solid fa-heart"></i> Loisirs</h3>
                     <div class="space-y-3">
-                        <div class="bg-white p-3 rounded-xl shadow-sm border border-emerald-100">
+                        <div class="bg-white p-3 rounded-xl shadow-sm border border-emerald-100" style="background-color: white !important;">
                             <div class="flex items-center gap-3">
                                 <div class="text-lg text-emerald-600"><i class="fa-solid fa-user-ninja"></i></div>
                                 <div>
@@ -268,11 +274,11 @@
                             </div>
                         </div>
                         <div class="flex gap-2">
-                            <div class="flex-1 bg-white p-2.5 rounded-xl text-center shadow-sm border border-emerald-50">
+                            <div class="flex-1 bg-white p-2.5 rounded-xl text-center shadow-sm border border-emerald-50" style="background-color: white !important;">
                                 <i class="fa-solid fa-cat text-emerald-500 mb-1 text-sm"></i>
                                 <p class="text-[9px] font-bold text-gray-600 uppercase">Félins</p>
                             </div>
-                            <div class="flex-1 bg-white p-2.5 rounded-xl text-center shadow-sm border border-emerald-50">
+                            <div class="flex-1 bg-white p-2.5 rounded-xl text-center shadow-sm border border-emerald-50" style="background-color: white !important;">
                                 <i class="fa-solid fa-volleyball text-emerald-500 mb-1 text-sm"></i>
                                 <p class="text-[9px] font-bold text-gray-600 uppercase">Sport</p>
                             </div>
@@ -295,7 +301,7 @@
                                 <h4 class="font-bold text-gray-900 leading-tight text-sm">Bac 1 - Licence Section Vétérinaire</h4>
                                 <p class="text-emerald-700 font-semibold text-xs mt-0.5">Université de Namur, Belgique</p>
                             </div>
-                            <span class="text-[10px] font-extrabold text-emerald-600 bg-emerald-50 px-2 py-1 rounded uppercase tracking-wider ml-2 whitespace-nowrap">2025 — 2026</span>
+                            <span class="text-[10px] font-extrabold text-emerald-600 bg-emerald-50 px-2 py-1 rounded uppercase tracking-wider ml-2 whitespace-nowrap" style="background-color: #ecfdf5 !important;">2025 — 2026</span>
                         </div>
                     </div>
 
@@ -305,7 +311,7 @@
                                 <h4 class="font-bold text-gray-900 leading-tight text-sm">L1 - Licence Chimie Biologie</h4>
                                 <p class="text-gray-600 font-medium text-xs mt-0.5">Université Versailles Saint-Quentin</p>
                             </div>
-                            <span class="text-[10px] font-extrabold text-gray-500 bg-gray-100 px-2 py-1 rounded uppercase tracking-wider ml-2 whitespace-nowrap">2024 — 2025</span>
+                            <span class="text-[10px] font-extrabold text-gray-500 bg-gray-100 px-2 py-1 rounded uppercase tracking-wider ml-2 whitespace-nowrap" style="background-color: #f3f4f6 !important;">2024 — 2025</span>
                         </div>
                     </div>
 
@@ -316,7 +322,7 @@
                                 <p class="text-gray-600 font-medium text-xs mt-0.5">Lycée Sainte Sophie</p>
                                 <p class="mt-1 text-emerald-600 font-bold text-[11px]"><i class="fa-solid fa-award mr-1"></i> Mention Bien</p>
                             </div>
-                            <span class="text-[10px] font-extrabold text-gray-500 bg-gray-100 px-2 py-1 rounded uppercase tracking-wider ml-2 whitespace-nowrap">2021 — 2024</span>
+                            <span class="text-[10px] font-extrabold text-gray-500 bg-gray-100 px-2 py-1 rounded uppercase tracking-wider ml-2 whitespace-nowrap" style="background-color: #f3f4f6 !important;">2021 — 2024</span>
                         </div>
                     </div>
                 </div>
@@ -326,19 +332,19 @@
             <section class="mb-8">
                 <h2 class="section-title"><i class="fa-solid fa-briefcase"></i> Expériences Professionnelles</h2>
                 <div class="grid gap-3">
-                    <div class="p-4 rounded-xl bg-gray-50 border border-gray-100">
+                    <div class="p-4 rounded-xl bg-gray-50 border border-gray-100" style="background-color: #f9fafb !important;">
                         <div class="flex justify-between items-center mb-1.5">
                             <h4 class="font-bold text-gray-800 text-sm">Aide aux devoirs</h4>
-                            <span class="text-[9px] font-bold bg-white text-emerald-600 border border-emerald-100 px-2 py-0.5 rounded-full uppercase">Scolaire</span>
+                            <span class="text-[9px] font-bold bg-white text-emerald-600 border border-emerald-100 px-2 py-0.5 rounded-full uppercase" style="background-color: white !important;">Scolaire</span>
                         </div>
                         <p class="text-xs text-gray-600 leading-relaxed italic">Accompagnement et soutien scolaire personnalisé pour deux enfants. Développement de la pédagogie et de la patience.</p>
                         <p class="mt-1.5 text-[10px] font-bold text-gray-400">2025</p>
                     </div>
 
-                    <div class="p-4 rounded-xl bg-gray-50 border border-gray-100">
+                    <div class="p-4 rounded-xl bg-gray-50 border border-gray-100" style="background-color: #f9fafb !important;">
                         <div class="flex justify-between items-center mb-1.5">
                             <h4 class="font-bold text-gray-800 text-sm">Assistante (Job d'été)</h4>
-                            <span class="text-[9px] font-bold bg-white text-gray-500 border border-gray-100 px-2 py-0.5 rounded-full uppercase">Administratif</span>
+                            <span class="text-[9px] font-bold bg-white text-gray-500 border border-gray-100 px-2 py-0.5 rounded-full uppercase" style="background-color: white !important;">Administratif</span>
                         </div>
                         <p class="text-xs text-gray-700 font-semibold mb-0.5">Guillon Expertise</p>
                         <p class="text-xs text-gray-600">Gestion de dossiers, archivage et assistance administrative.</p>
@@ -351,29 +357,29 @@
             <section>
                 <h2 class="section-title"><i class="fa-solid fa-magnifying-glass"></i> Stages d'observation</h2>
                 <div class="grid grid-cols-2 gap-3">
-                    <div class="bg-emerald-50/40 p-4 rounded-2xl border border-emerald-100/50">
-                        <div class="w-8 h-8 bg-emerald-100 rounded-full flex items-center justify-center text-emerald-600 mb-2 shadow-inner text-sm">
+                    <div class="bg-emerald-50/40 p-4 rounded-2xl border border-emerald-100/50" style="background-color: rgba(236, 253, 245, 0.4) !important;">
+                        <div class="w-8 h-8 bg-emerald-100 rounded-full flex items-center justify-center text-emerald-600 mb-2 shadow-inner text-sm" style="background-color: #d1fae5 !important;">
                             <i class="fa-solid fa-stethoscope"></i>
                         </div>
                         <h4 class="font-bold text-emerald-900 text-xs">Stage Clinique Vétérinaire</h4>
                         <p class="text-[11px] text-emerald-700/80 mb-2 font-medium">Saint-Antoine Proville</p>
                         <div class="flex items-center justify-between mt-auto">
-                            <span class="text-[9px] font-black text-emerald-600 bg-white px-2 py-1 rounded-md border border-emerald-50">2022</span>
+                            <span class="text-[9px] font-black text-emerald-600 bg-white px-2 py-1 rounded-md border border-emerald-50" style="background-color: white !important;">2022</span>
                         </div>
                     </div>
 
-                    <div class="bg-emerald-50/40 p-4 rounded-2xl border border-emerald-100/50">
-                        <div class="w-8 h-8 bg-emerald-100 rounded-full flex items-center justify-center text-emerald-600 mb-2 shadow-inner text-sm">
+                    <div class="bg-emerald-50/40 p-4 rounded-2xl border border-emerald-100/50" style="background-color: rgba(236, 253, 245, 0.4) !important;">
+                        <div class="w-8 h-8 bg-emerald-100 rounded-full flex items-center justify-center text-emerald-600 mb-2 shadow-inner text-sm" style="background-color: #d1fae5 !important;">
                             <i class="fa-solid fa-dog"></i>
                         </div>
                         <h4 class="font-bold text-emerald-900 text-xs">Observation animalière</h4>
                         <p class="text-[11px] text-emerald-700/80 mb-2 font-medium">SDA Estourmel</p>
                         <div class="flex items-center justify-between mt-auto">
-                            <span class="text-[9px] font-black text-emerald-600 bg-white px-2 py-1 rounded-md border border-emerald-50">2024</span>
+                            <span class="text-[9px] font-black text-emerald-600 bg-white px-2 py-1 rounded-md border border-emerald-50" style="background-color: white !important;">2024</span>
                         </div>
                     </div>
 
-                    <div class="col-span-2 bg-gray-50 p-3 rounded-xl border border-gray-100 flex items-center justify-between mt-1">
+                    <div class="col-span-2 bg-gray-50 p-3 rounded-xl border border-gray-100 flex items-center justify-between mt-1" style="background-color: #f9fafb !important;">
                         <div class="flex items-center gap-3">
                             <div class="text-gray-400"><i class="fa-solid fa-helmet-safety"></i></div>
                             <div>
