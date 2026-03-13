@@ -3,143 +3,114 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CV Marie Moutté - Future Vétérinaire</title>
+    <title>CV Marie Moutté - A4 Ready</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
         
         :root {
-            --primary: #059669; /* Emerald 600 */
+            --primary: #059669; 
             --primary-light: #ecfdf5;
             --text-dark: #1f2937;
             --text-muted: #4b5563;
+            
+            /* --- REGLAGES PHOTO (ROGNER ICI) --- */
+            --photo-zoom: 1.2;      /* 1 = taille normale, 1.5 = zoom 150% */
+            --photo-y-offset: 0%;   /* Ajuster la hauteur (ex: -10% pour monter, 10% pour descendre) */
+            --photo-x-offset: 0%;   /* Ajuster l'alignement horizontal */
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            /* Force l'impression des couleurs sur TOUS les éléments */
-            -webkit-print-color-adjust: exact !important;
-            print-color-adjust: exact !important;
-            color-adjust: exact !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
         }
 
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: #e5e7eb;
-            color: var(--text-dark);
-        }
-
-        /* --- Print Styles pour un PDF A4 parfait --- */
-        @media print {
-            * {
-                -webkit-print-color-adjust: exact !important;
-                print-color-adjust: exact !important;
-            }
-            @page {
-                size: A4;
-                margin: 0;
-            }
-            .no-print { display: none !important; }
-            body { background-color: white; }
-            .cv-container { 
-                box-shadow: none !important; 
-                margin: 0 !important; 
-                width: 21cm !important; 
-                height: 29.7cm !important;
-                border-radius: 0 !important;
-            }
-            .left-column { background-color: #f0fdf4 !important; }
-        }
-
-        /* --- Layout A4 --- */
-        .cv-container {
-            width: 21cm;
-            height: 29.7cm; /* Hauteur fixe A4 */
-            margin: 2rem auto;
-            background: white;
+            background-color: #e2e8f0;
             display: flex;
-            flex-direction: row;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.2);
+            justify-content: center;
+            padding: 40px 0;
+        }
+
+        /* --- Format A4 Strict --- */
+        .cv-page {
+            width: 210mm;
+            height: 297mm;
+            background: white;
+            box-shadow: 0 0 20px rgba(0,0,0,0.2);
+            display: flex;
             overflow: hidden;
-            background-color: white;
-        }
-
-        .left-column {
-            width: 34%;
-            background-color: #f0fdf4;
-            padding: 2.5rem 1.5rem;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .right-column {
-            width: 66%;
-            padding: 2.5rem 2rem;
-            background: white;
-            display: flex;
-            flex-direction: column;
-        }
-
-        /* --- Elements --- */
-        .photo-wrapper {
-            width: 150px;
-            height: 150px;
-            margin: 0 auto 1.5rem;
             position: relative;
         }
 
-        .photo-wrapper img {
+        @media print {
+            body { background: none; padding: 0; }
+            .cv-page { box-shadow: none; margin: 0; width: 210mm; height: 297mm; }
+            .btn-print { display: none !important; }
+            @page { size: A4; margin: 0; }
+        }
+
+        /* --- Layout --- */
+        .sidebar {
+            width: 75mm;
+            background-color: #f0fdf4;
+            height: 100%;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 2rem;
+            height: 100%;
+        }
+
+        /* --- Photo & Cropping --- */
+        .photo-container {
+            width: 160px;
+            height: 160px;
+            margin: 0 auto 1rem;
+            border-radius: 1.5rem;
+            border: 4px solid white;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            overflow: hidden; /* Important pour le rognage */
+            position: relative;
+            background: #d1fae5;
+        }
+
+        .photo-container img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            border-radius: 2rem;
-            border: 4px solid white;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            transform: scale(var(--photo-zoom)) translate(var(--photo-x-offset), var(--photo-y-offset));
+            transition: transform 0.3s ease;
         }
 
-        .photo-wrapper::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            right: -5px;
-            width: 35px;
-            height: 35px;
-            background: var(--primary) !important;
-            border: 4px solid #f0fdf4;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
+        /* --- Typography & Elements --- */
         .section-title {
-            position: relative;
             display: flex;
             align-items: center;
-            gap: 0.75rem;
-            font-size: 1.1rem;
+            gap: 0.5rem;
+            font-size: 0.9rem;
             font-weight: 800;
             color: var(--primary);
             text-transform: uppercase;
             letter-spacing: 0.05em;
-            margin-bottom: 1.25rem;
-        }
-
-        .section-title::after {
-            content: '';
-            flex: 1;
-            height: 2px;
-            background: #d1fae5 !important;
-            border-radius: 1px;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid #d1fae5;
+            padding-bottom: 0.3rem;
         }
 
         .timeline-item {
             position: relative;
-            padding-left: 2rem;
-            margin-bottom: 1.25rem;
+            padding-left: 1.2rem;
+            margin-bottom: 1.2rem;
         }
 
         .timeline-item::before {
@@ -147,25 +118,23 @@
             position: absolute;
             left: 0;
             top: 0.4rem;
-            width: 10px;
-            height: 10px;
+            width: 8px;
+            height: 8px;
             border-radius: 50%;
-            background: var(--primary) !important;
-            box-shadow: 0 0 0 4px #ecfdf5;
+            background: var(--primary);
         }
 
         .timeline-item::after {
             content: '';
             position: absolute;
-            left: 4px;
-            top: 1.5rem;
-            bottom: -0.5rem;
+            left: 3px;
+            top: 1.2rem;
+            bottom: -1rem;
             width: 2px;
-            background: #d1fae5 !important;
+            background: #d1fae5;
         }
 
         .timeline-item:last-child::after { display: none; }
-        .timeline-item:last-child { margin-bottom: 0; }
 
         .btn-print {
             position: fixed;
@@ -174,89 +143,70 @@
             background: var(--primary);
             color: white;
             padding: 1rem 1.5rem;
-            border-radius: 9999px;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2);
-            cursor: pointer;
-            transition: all 0.2s;
-            z-index: 50;
+            border-radius: 50px;
             font-weight: bold;
+            box-shadow: 0 10px 15px rgba(0,0,0,0.2);
+            cursor: pointer;
+            z-index: 100;
             display: flex;
             align-items: center;
             gap: 0.5rem;
         }
 
-        .btn-print:hover { transform: scale(1.05); background: #047857; }
+        .badge {
+            font-size: 0.65rem;
+            padding: 0.2rem 0.5rem;
+            font-weight: 700;
+            border-radius: 4px;
+        }
     </style>
 </head>
 <body>
 
-    <!-- Bouton Imprimer (invisible sur le document final) -->
-    <button onclick="window.print()" class="btn-print no-print" title="Imprimer le CV">
-        <i class="fa-solid fa-file-pdf"></i> Télécharger PDF
+    <button onclick="window.print()" class="btn-print">
+        <i class="fa-solid fa-print"></i> Imprimer / Enregistrer en PDF
     </button>
 
-    <div class="cv-container">
-        
-        <!-- COLONNE GAUCHE (Infos & Profil) -->
-        <aside class="left-column">
+    <div class="cv-page">
+        <!-- BARRE LATÉRALE -->
+        <aside class="sidebar">
             <div class="text-center">
-                <div class="photo-wrapper">
-                    <!-- Image locale avec les classes de rognage/zoom -->
-                    <img src="marie.png" alt="Marie Moutté" class="object-[center_25%] scale-[1.15]">
+                <div class="photo-container">
+                    <!-- Utilisation de votre fichier marie.png -->
+                    <img src="marie.png" alt="Marie Moutté" onerror="this.src='https://images.unsplash.com/photo-1559839734-2b71f1e3c7e5?auto=format&fit=crop&q=80&w=400'">
                 </div>
-                <h1 class="text-3xl font-extrabold text-gray-900 tracking-tight">Marie <br><span class="text-emerald-600">Moutté</span></h1>
-                <p class="mt-2 text-emerald-700 font-bold uppercase text-[11px] tracking-[0.2em]">Future Vétérinaire</p>
-                
-                <div class="mt-4 flex justify-center gap-2">
-                    <span class="bg-white/80 backdrop-blur px-3 py-1 rounded-full text-[10px] font-bold text-emerald-800 shadow-sm border border-emerald-100">
-                        <i class="fa-solid fa-paw mr-1"></i> PASSION ANIMAUX
-                    </span>
-                </div>
+                <h1 class="text-2xl font-extrabold text-gray-900 leading-tight">Marie <br><span class="text-emerald-600">Moutté</span></h1>
+                <p class="mt-2 text-emerald-700 font-bold uppercase text-[10px] tracking-[0.2em]">Future Vétérinaire</p>
             </div>
 
-            <div class="mt-8 space-y-8">
+            <div class="mt-8 space-y-6">
                 <!-- Contact -->
                 <section>
                     <h3 class="section-title"><i class="fa-solid fa-id-card"></i> Contact</h3>
                     <div class="space-y-3">
-                        <a href="tel:0611952318" class="flex items-center gap-3 group">
-                            <div class="w-8 h-8 rounded-lg bg-white flex items-center justify-center text-emerald-600 group-hover:bg-emerald-600 group-hover:text-white transition-colors shadow-sm text-sm" style="background-color: white !important;">
-                                <i class="fa-solid fa-phone"></i>
-                            </div>
-                            <div>
-                                <p class="text-[9px] text-emerald-700 font-bold uppercase tracking-wider leading-none">Téléphone</p>
-                                <p class="text-xs font-semibold mt-0.5">06 11 95 23 18</p>
-                            </div>
-                        </a>
-                        <a href="mailto:mm.moutte@icloud.com" class="flex items-center gap-3 group">
-                            <div class="w-8 h-8 rounded-lg bg-white flex items-center justify-center text-emerald-600 group-hover:bg-emerald-600 group-hover:text-white transition-colors shadow-sm text-sm" style="background-color: white !important;">
-                                <i class="fa-solid fa-envelope"></i>
-                            </div>
-                            <div class="overflow-hidden">
-                                <p class="text-[9px] text-emerald-700 font-bold uppercase tracking-wider leading-none">Email</p>
-                                <p class="text-xs font-semibold truncate mt-0.5">mm.moutte@icloud.com</p>
-                            </div>
-                        </a>
                         <div class="flex items-center gap-3">
-                            <div class="w-8 h-8 rounded-lg bg-white flex items-center justify-center text-emerald-600 shadow-sm text-sm" style="background-color: white !important;">
-                                <i class="fa-solid fa-location-dot"></i>
-                            </div>
-                            <div>
-                                <p class="text-[9px] text-emerald-700 font-bold uppercase tracking-wider leading-none">Adresse</p>
-                                <p class="text-xs font-semibold mt-0.5">Marly-le-Roi, 78160</p>
-                            </div>
+                            <i class="fa-solid fa-phone text-emerald-600 text-xs w-4"></i>
+                            <p class="text-xs font-semibold">06 11 95 23 18</p>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <i class="fa-solid fa-envelope text-emerald-600 text-xs w-4"></i>
+                            <p class="text-xs font-semibold break-all">mm.moutte@icloud.com</p>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <i class="fa-solid fa-location-dot text-emerald-600 text-xs w-4"></i>
+                            <p class="text-xs font-semibold">Marly-le-Roi, 78160</p>
                         </div>
                     </div>
                 </section>
 
-                <!-- Compétences / Langues -->
+                <!-- Atouts -->
                 <section>
-                    <h3 class="section-title"><i class="fa-solid fa-gear"></i> Atouts</h3>
+                    <h3 class="section-title"><i class="fa-solid fa-star"></i> Atouts</h3>
                     <div class="flex flex-wrap gap-1.5">
-                        <span class="bg-emerald-600 text-white px-2 py-1 rounded-md text-[11px] font-bold" style="background-color: #059669 !important;">Rigueur</span>
-                        <span class="bg-emerald-600 text-white px-2 py-1 rounded-md text-[11px] font-bold" style="background-color: #059669 !important;">Empathie</span>
-                        <span class="bg-emerald-600 text-white px-2 py-1 rounded-md text-[11px] font-bold" style="background-color: #059669 !important;">Organisation</span>
-                        <span class="bg-white text-emerald-700 border border-emerald-100 px-2 py-1 rounded-md text-[11px] font-bold italic" style="background-color: white !important;">Anglais (B1)</span>
+                        <span class="bg-emerald-600 text-white badge">Rigueur</span>
+                        <span class="bg-emerald-600 text-white badge">Empathie</span>
+                        <span class="bg-emerald-600 text-white badge">Organisation</span>
+                        <span class="bg-white text-emerald-700 border border-emerald-200 badge">Anglais (B2)</span>
                     </div>
                 </section>
 
@@ -264,65 +214,66 @@
                 <section>
                     <h3 class="section-title"><i class="fa-solid fa-heart"></i> Loisirs</h3>
                     <div class="space-y-3">
-                        <div class="bg-white p-3 rounded-xl shadow-sm border border-emerald-100" style="background-color: white !important;">
-                            <div class="flex items-center gap-3">
-                                <div class="text-lg text-emerald-600"><i class="fa-solid fa-user-ninja"></i></div>
-                                <div>
-                                    <p class="font-bold text-gray-800 text-xs leading-none">Judo</p>
-                                    <p class="text-[9px] text-gray-500 mt-1 uppercase font-bold tracking-tighter">Pratique depuis 2011</p>
-                                </div>
+                        <div class="bg-white p-3 rounded-xl shadow-sm border border-emerald-100 flex items-center gap-3">
+                            <i class="fa-solid fa-user-ninja text-emerald-600"></i>
+                            <div>
+                                <p class="font-bold text-xs">Judo</p>
+                                <p class="text-[9px] text-gray-500">Depuis 2011</p>
                             </div>
                         </div>
-                        <div class="flex gap-2">
-                            <div class="flex-1 bg-white p-2.5 rounded-xl text-center shadow-sm border border-emerald-50" style="background-color: white !important;">
-                                <i class="fa-solid fa-cat text-emerald-500 mb-1 text-sm"></i>
-                                <p class="text-[9px] font-bold text-gray-600 uppercase">Félins</p>
+                        <div class="grid grid-cols-2 gap-2">
+                            <div class="bg-white p-2 rounded-lg text-center shadow-sm border border-emerald-50">
+                                <i class="fa-solid fa-cat text-emerald-500 text-xs"></i>
+                                <p class="text-[9px] font-bold text-gray-600 uppercase mt-1">Félins</p>
                             </div>
-                            <div class="flex-1 bg-white p-2.5 rounded-xl text-center shadow-sm border border-emerald-50" style="background-color: white !important;">
-                                <i class="fa-solid fa-volleyball text-emerald-500 mb-1 text-sm"></i>
-                                <p class="text-[9px] font-bold text-gray-600 uppercase">Sport</p>
+                            <div class="bg-white p-2 rounded-lg text-center shadow-sm border border-emerald-50">
+                                <i class="fa-solid fa-volleyball text-emerald-500 text-xs"></i>
+                                <p class="text-[9px] font-bold text-gray-600 uppercase mt-1">Sport</p>
                             </div>
                         </div>
                     </div>
                 </section>
             </div>
+
+            <!-- Footer Sidebar -->
+            <div class="mt-auto pt-4 border-t border-emerald-200">
+                <p class="text-[9px] text-emerald-800/50 text-center italic">Mobilité : France & Belgique</p>
+            </div>
         </aside>
 
-        <!-- COLONNE DROITE (Parcours) -->
-        <main class="right-column">
+        <!-- CONTENU PRINCIPAL -->
+        <main class="main-content">
             
-            <!-- Éducation -->
+            <!-- Education -->
             <section class="mb-8">
-                <h2 class="section-title"><i class="fa-solid fa-graduation-cap"></i> Parcours Scolaire</h2>
+                <h2 class="section-title text-lg"><i class="fa-solid fa-graduation-cap"></i> Parcours Scolaire</h2>
                 <div class="space-y-4">
                     <div class="timeline-item">
                         <div class="flex justify-between items-start">
                             <div>
-                                <h4 class="font-bold text-gray-900 leading-tight text-sm">Bac 1 - Licence Section Vétérinaire</h4>
-                                <p class="text-emerald-700 font-semibold text-xs mt-0.5">Université de Namur, Belgique</p>
+                                <h4 class="font-bold text-gray-900 text-sm">Bac 1 - Licence Section Vétérinaire</h4>
+                                <p class="text-emerald-700 font-semibold text-xs">Université de Namur, Belgique</p>
                             </div>
-                            <span class="text-[10px] font-extrabold text-emerald-600 bg-emerald-50 px-2 py-1 rounded uppercase tracking-wider ml-2 whitespace-nowrap" style="background-color: #ecfdf5 !important;">2025 — 2026</span>
+                            <span class="text-[9px] font-bold text-emerald-600 bg-emerald-50 px-2 py-1 rounded">2025 — 2026</span>
                         </div>
                     </div>
-
                     <div class="timeline-item">
                         <div class="flex justify-between items-start">
                             <div>
-                                <h4 class="font-bold text-gray-900 leading-tight text-sm">L1 - Licence Chimie Biologie</h4>
-                                <p class="text-gray-600 font-medium text-xs mt-0.5">Université Versailles Saint-Quentin</p>
+                                <h4 class="font-bold text-gray-900 text-sm">L1 - Licence Chimie Biologie</h4>
+                                <p class="text-gray-600 font-medium text-xs">Université Versailles Saint-Quentin</p>
                             </div>
-                            <span class="text-[10px] font-extrabold text-gray-500 bg-gray-100 px-2 py-1 rounded uppercase tracking-wider ml-2 whitespace-nowrap" style="background-color: #f3f4f6 !important;">2024 — 2025</span>
+                            <span class="text-[9px] font-bold text-gray-400 bg-gray-50 px-2 py-1 rounded">2024 — 2025</span>
                         </div>
                     </div>
-
                     <div class="timeline-item">
                         <div class="flex justify-between items-start">
                             <div>
-                                <h4 class="font-bold text-gray-900 leading-tight text-sm">Baccalauréat & Prépa Santé</h4>
-                                <p class="text-gray-600 font-medium text-xs mt-0.5">Lycée Sainte Sophie</p>
-                                <p class="mt-1 text-emerald-600 font-bold text-[11px]"><i class="fa-solid fa-award mr-1"></i> Mention Bien</p>
+                                <h4 class="font-bold text-gray-900 text-sm">Baccalauréat & Prépa Santé</h4>
+                                <p class="text-gray-600 font-medium text-xs">Lycée Sainte Sophie</p>
+                                <p class="text-emerald-600 font-bold text-[10px] mt-1"><i class="fa-solid fa-award"></i> Mention Bien</p>
                             </div>
-                            <span class="text-[10px] font-extrabold text-gray-500 bg-gray-100 px-2 py-1 rounded uppercase tracking-wider ml-2 whitespace-nowrap" style="background-color: #f3f4f6 !important;">2021 — 2024</span>
+                            <span class="text-[9px] font-bold text-gray-400 bg-gray-50 px-2 py-1 rounded">2021 — 2024</span>
                         </div>
                     </div>
                 </div>
@@ -330,65 +281,51 @@
 
             <!-- Expériences -->
             <section class="mb-8">
-                <h2 class="section-title"><i class="fa-solid fa-briefcase"></i> Expériences Professionnelles</h2>
+                <h2 class="section-title text-lg"><i class="fa-solid fa-briefcase"></i> Expériences</h2>
                 <div class="grid gap-3">
-                    <div class="p-4 rounded-xl bg-gray-50 border border-gray-100" style="background-color: #f9fafb !important;">
-                        <div class="flex justify-between items-center mb-1.5">
+                    <div class="p-4 rounded-xl bg-gray-50 border border-gray-100">
+                        <div class="flex justify-between items-center mb-1">
                             <h4 class="font-bold text-gray-800 text-sm">Aide aux devoirs</h4>
-                            <span class="text-[9px] font-bold bg-white text-emerald-600 border border-emerald-100 px-2 py-0.5 rounded-full uppercase" style="background-color: white !important;">Scolaire</span>
+                            <span class="text-[9px] font-bold text-emerald-600">2025</span>
                         </div>
-                        <p class="text-xs text-gray-600 leading-relaxed italic">Accompagnement et soutien scolaire personnalisé pour deux enfants. Développement de la pédagogie et de la patience.</p>
-                        <p class="mt-1.5 text-[10px] font-bold text-gray-400">2025</p>
+                        <p class="text-xs text-gray-600 leading-relaxed italic">Soutien scolaire personnalisé pour deux enfants. Pédagogie et patience.</p>
                     </div>
-
-                    <div class="p-4 rounded-xl bg-gray-50 border border-gray-100" style="background-color: #f9fafb !important;">
-                        <div class="flex justify-between items-center mb-1.5">
-                            <h4 class="font-bold text-gray-800 text-sm">Assistante (Job d'été)</h4>
-                            <span class="text-[9px] font-bold bg-white text-gray-500 border border-gray-100 px-2 py-0.5 rounded-full uppercase" style="background-color: white !important;">Administratif</span>
+                    <div class="p-4 rounded-xl bg-gray-50 border border-gray-100">
+                        <div class="flex justify-between items-center mb-1">
+                            <h4 class="font-bold text-gray-800 text-sm">Assistante Administrative (Été)</h4>
+                            <span class="text-[9px] font-bold text-gray-400">Mars 2023</span>
                         </div>
-                        <p class="text-xs text-gray-700 font-semibold mb-0.5">Guillon Expertise</p>
-                        <p class="text-xs text-gray-600">Gestion de dossiers, archivage et assistance administrative.</p>
-                        <p class="mt-1.5 text-[10px] font-bold text-gray-400">Mars 2023</p>
+                        <p class="text-xs font-semibold text-emerald-700">Guillon Expertise</p>
+                        <p class="text-xs text-gray-500 mt-1">Gestion de dossiers, archivage et assistance.</p>
                     </div>
                 </div>
             </section>
 
             <!-- Stages -->
             <section>
-                <h2 class="section-title"><i class="fa-solid fa-magnifying-glass"></i> Stages d'observation</h2>
-                <div class="grid grid-cols-2 gap-3">
-                    <div class="bg-emerald-50/40 p-4 rounded-2xl border border-emerald-100/50" style="background-color: rgba(236, 253, 245, 0.4) !important;">
-                        <div class="w-8 h-8 bg-emerald-100 rounded-full flex items-center justify-center text-emerald-600 mb-2 shadow-inner text-sm" style="background-color: #d1fae5 !important;">
-                            <i class="fa-solid fa-stethoscope"></i>
+                <h2 class="section-title text-lg"><i class="fa-solid fa-magnifying-glass"></i> Stages d'observation</h2>
+                <div class="grid grid-cols-2 gap-3 mb-3">
+                    <div class="bg-emerald-50/50 p-4 rounded-2xl border border-emerald-100">
+                        <div class="w-8 h-8 bg-white rounded-lg flex items-center justify-center text-emerald-600 mb-2 shadow-sm">
+                            <i class="fa-solid fa-stethoscope text-sm"></i>
                         </div>
-                        <h4 class="font-bold text-emerald-900 text-xs">Stage Clinique Vétérinaire</h4>
-                        <p class="text-[11px] text-emerald-700/80 mb-2 font-medium">Saint-Antoine Proville</p>
-                        <div class="flex items-center justify-between mt-auto">
-                            <span class="text-[9px] font-black text-emerald-600 bg-white px-2 py-1 rounded-md border border-emerald-50" style="background-color: white !important;">2022</span>
-                        </div>
+                        <h4 class="font-bold text-gray-900 text-xs">Clinique Vétérinaire</h4>
+                        <p class="text-[10px] text-emerald-700">Saint-Antoine Proville | 2022</p>
                     </div>
-
-                    <div class="bg-emerald-50/40 p-4 rounded-2xl border border-emerald-100/50" style="background-color: rgba(236, 253, 245, 0.4) !important;">
-                        <div class="w-8 h-8 bg-emerald-100 rounded-full flex items-center justify-center text-emerald-600 mb-2 shadow-inner text-sm" style="background-color: #d1fae5 !important;">
-                            <i class="fa-solid fa-dog"></i>
+                    <div class="bg-emerald-50/50 p-4 rounded-2xl border border-emerald-100">
+                        <div class="w-8 h-8 bg-white rounded-lg flex items-center justify-center text-emerald-600 mb-2 shadow-sm">
+                            <i class="fa-solid fa-dog text-sm"></i>
                         </div>
-                        <h4 class="font-bold text-emerald-900 text-xs">Observation animalière</h4>
-                        <p class="text-[11px] text-emerald-700/80 mb-2 font-medium">SDA Estourmel</p>
-                        <div class="flex items-center justify-between mt-auto">
-                            <span class="text-[9px] font-black text-emerald-600 bg-white px-2 py-1 rounded-md border border-emerald-50" style="background-color: white !important;">2024</span>
-                        </div>
+                        <h4 class="font-bold text-gray-900 text-xs">Refuge Animalier</h4>
+                        <p class="text-[10px] text-emerald-700">SDA Estourmel | 2024</p>
                     </div>
-
-                    <div class="col-span-2 bg-gray-50 p-3 rounded-xl border border-gray-100 flex items-center justify-between mt-1" style="background-color: #f9fafb !important;">
-                        <div class="flex items-center gap-3">
-                            <div class="text-gray-400"><i class="fa-solid fa-helmet-safety"></i></div>
-                            <div>
-                                <h4 class="font-bold text-gray-700 text-xs">Expertise Construction</h4>
-                                <p class="text-[9px] text-gray-500 uppercase font-bold tracking-tight">Guillon Expertise</p>
-                            </div>
-                        </div>
-                        <span class="text-[10px] font-bold text-gray-400">2022</span>
+                </div>
+                <div class="bg-gray-50 p-3 rounded-xl border border-gray-100 flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <i class="fa-solid fa-helmet-safety text-gray-300"></i>
+                        <p class="text-xs font-bold text-gray-700">Expertise Construction (Guillon)</p>
                     </div>
+                    <span class="text-[9px] font-bold text-gray-400">2022</span>
                 </div>
             </section>
 
