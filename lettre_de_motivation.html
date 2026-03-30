@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lettre de Motivation - Théotime Camet</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Styles de base pour imiter une page A4 */
+        body {
+            background-color: #525659; /* Couleur de fond d'un lecteur PDF classique */
+            font-family: Arial, Helvetica, sans-serif;
+            display: flex;
+            justify-content: center;
+            padding: 2rem 0;
+            margin: 0;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .page-a4 {
+            background: white;
+            width: 210mm;
+            min-height: 297mm;
+            padding: 25mm 20mm; /* Marges standard A4 */
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        /* Barre bleue décorative (reprise de la couleur du CV) */
+        .barre-couleur {
+            height: 4px;
+            background-color: #2546f0; /* Bleu du CV */
+            width: 100%;
+            margin-bottom: 2rem;
+        }
+
+        .barre-couleur-bas {
+            height: 4px;
+            background-color: #2546f0; /* Bleu du CV */
+            width: calc(100% - 40mm); /* Ajusté aux marges */
+            position: absolute;
+            bottom: 25mm;
+            left: 20mm;
+        }
+
+        /* Optimisation pour l'impression */
+        @media print {
+            body {
+                background-color: white;
+                padding: 0;
+            }
+            .page-a4 {
+                box-shadow: none;
+                margin: 0;
+                width: 100%;
+                height: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="page-a4">
+        <!-- Ligne bleue supérieure -->
+        <div class="barre-couleur"></div>
+
+        <!-- En-tête : Coordonnées et Date -->
+        <div class="flex justify-between items-start mb-10">
+            <div class="text-[13px] leading-tight text-gray-500">
+                <p class="font-bold text-gray-800 text-sm mb-1">Théotime Camet</p>
+                <p>9 rue des Tanneries</p>
+                <p>80500 Montdidier</p>
+                <p>06 41 49 57 22</p>
+                <a href="mailto:theotimecamet2006@gmail.com" style="color: #2546f0;" class="hover:underline">theotimecamet2006@gmail.com</a>
+            </div>
+            <div class="text-[13px] font-bold text-gray-800 mt-1">
+                30 Mars 2026
+            </div>
+        </div>
+
+        <!-- Destinataire -->
+        <div class="text-[13px] text-gray-800 mb-8 ml-auto w-1/2">
+            <p class="font-bold">À l'attention du Responsable du Recrutement</p>
+            <p>[Nom de l'entreprise]</p>
+            <p>[Adresse de l'entreprise]</p>
+            <p>[Code Postal, Ville]</p>
+        </div>
+
+        <!-- Objet -->
+        <div class="text-[13px] font-bold text-gray-800 mb-8">
+            <span style="color: #2546f0;">Objet :</span> Candidature pour une alternance en école d'ingénieur
+        </div>
+
+        <!-- Corps de la lettre -->
+        <div class="text-[14px] text-gray-800 leading-[1.6] text-justify">
+            <p class="mb-6">Madame, Monsieur,</p>
+
+            <p class="mb-6">
+                Actuellement étudiant en deuxième année de Classe Préparatoire aux Grandes Écoles (CPGE) filière TSI au Lycée Louis-Thuillier d'Amiens, je prépare activement mon intégration en école d'ingénieur pour la rentrée prochaine. C'est dans ce cadre que je vous soumets ma candidature, à la recherche d'une alternance qui me permettra d'allier l'exigence académique de ma formation à une expérience professionnalisante concrète au sein de vos équipes.
+            </p>
+
+            <p class="mb-6">
+                Mon parcours en classe préparatoire m'a doté d'un solide bagage scientifique et technique, ainsi que d'une rigueur et d'une grande capacité de travail. De plus, mon implication volontaire au sein du Service National Universel (SNU) a forgé mon esprit d'équipe et mon sens de l'engagement. Enfin, un stage d'observation réalisé chez Skydome m'a permis de découvrir le fonctionnement d'une entreprise industrielle et de ses différents corps de métiers, confirmant mon attrait pour la technique et la gestion de projets concrets.
+            </p>
+
+            <p class="mb-6">
+                Je souhaite aujourd'hui rejoindre une structure reconnue comme la vôtre, dont les projets font écho à mes aspirations professionnelles et à mes centres d'intérêt, tels que la domotique et l'innovation technique. Intégrer votre entreprise représente pour moi une opportunité unique d'apporter ma motivation, mon dynamisme et mon souci du détail, tout en développant de nouvelles compétences sous l'encadrement de vos professionnels aguerris.
+            </p>
+
+            <p class="mb-6">
+                Patient et doté d'une forte capacité d'adaptation, je suis prêt à m'investir pleinement dans les missions que vous voudrez bien me confier. Je me tiens à votre entière disposition pour un entretien afin d'échanger plus en détail sur mon profil.
+            </p>
+
+            <p class="mb-12">
+                Je vous prie d'agréer, Madame, Monsieur, l'expression de mes salutations distinguées.
+            </p>
+
+            <p class="mb-6 font-bold">
+                Théotime CAMET
+            </p>
+        </div>
+
+        <!-- Ligne bleue inférieure -->
+        <div class="barre-couleur-bas"></div>
+    </div>
+
+</body>
+</html>
