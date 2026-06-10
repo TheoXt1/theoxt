@@ -22,27 +22,27 @@
             background: white;
             width: 210mm;
             min-height: 297mm;
-            padding: 25mm 20mm; /* Marges standard A4 */
+            padding: 25mm 25mm; /* Marges latérales augmentées pour aérer */
             box-shadow: 0 4px 8px rgba(0,0,0,0.2);
             box-sizing: border-box;
             position: relative;
         }
 
-        /* Barre bleue décorative (reprise de la couleur du CV) */
+        /* Barre bleue décorative */
         .barre-couleur {
             height: 4px;
             background-color: #2546f0; /* Bleu du CV */
             width: 100%;
-            margin-bottom: 2rem;
+            margin-bottom: 2.5rem; /* Espace accentué sous la barre */
         }
 
         .barre-couleur-bas {
             height: 4px;
-            background-color: #2546f0; /* Bleu du CV */
-            width: calc(100% - 40mm); /* Ajusté aux marges */
+            background-color: #2546f0;
+            width: calc(100% - 50mm); /* Ajusté aux nouvelles marges de 25mm */
             position: absolute;
             bottom: 25mm;
-            left: 20mm;
+            left: 25mm;
         }
 
         /* Optimisation pour l'impression */
@@ -67,13 +67,13 @@
         <div class="barre-couleur"></div>
 
         <!-- En-tête : Coordonnées et Date -->
-        <div class="flex justify-between items-start mb-10">
-            <div class="text-[13px] leading-tight text-gray-500">
-                <p class="font-bold text-gray-800 text-sm mb-1">Théotime Camet</p>
+        <div class="flex justify-between items-start mb-12">
+            <div class="text-[13px] leading-relaxed text-gray-600">
+                <p class="font-bold text-gray-800 text-[14px] mb-1.5">Théotime Camet</p>
                 <p>9 Rue des Tanneries</p>
                 <p>80500 Montdidier</p>
-                <p>06 41 49 57 22</p>
-                <a href="mailto:theotimecamet2006@gmail.com" style="color: #2546f0;" class="hover:underline">theotimecamet2006@gmail.com</a>
+                <p class="mt-0.5">06 41 49 57 22</p>
+                <a href="mailto:theotimecamet2006@gmail.com" style="color: #2546f0;" class="hover:underline mt-0.5 block">theotimecamet2006@gmail.com</a>
             </div>
             <div class="text-[13px] font-bold text-gray-800 mt-1">
                 10 Juin 2026
@@ -81,39 +81,41 @@
         </div>
 
         <!-- Destinataire -->
-        <div class="text-[13px] text-gray-800 mb-8 ml-auto w-1/2">
+        <div class="text-[13px] text-gray-800 mb-10 ml-auto w-1/2">
             <p class="font-bold">À l'attention du Responsable du Recrutement</p>
+            <p class="font-bold">SNCF Réseau</p>
         </div>
 
         <!-- Objet -->
-        <div class="text-[13px] font-bold text-gray-800 mb-8">
-            <span style="color: #2546f0;">Objet :</span> Candidature
+        <div class="text-[13px] font-bold text-gray-800 mb-12">
+            <span style="color: #2546f0;">Objet :</span> Candidature pour une alternance en école d'ingénieur – Supply Chain et Logistique
         </div>
 
         <!-- Corps de la lettre -->
-        <div class="text-[14px] text-gray-800 leading-[1.6] text-justify">
-            <p class="mb-6">Madame, Monsieur,</p>
+        <div class="text-[14px] text-gray-800 leading-[1.8] text-justify">
+            <p class="mb-8">Madame, Monsieur,</p>
 
-            <p class="mb-6">
-                Actuellement étudiant en deuxième année de Classe Préparatoire aux Grandes Écoles (CPGE) filière TSI au Lycée Louis-Thuillier d'Amiens, je prépare activement mon intégration en école d'ingénieur pour la rentrée prochaine. C'est dans ce cadre que je vous soumets ma candidature, à la recherche d'une alternance débutant en septembre 2027, qui me permettra d'allier l'exigence académique de ma formation à une expérience professionnelle concrète au sein de vos équipes.            </p>
-
-            <p class="mb-6">
-                Mon parcours en classe préparatoire m'a doté d'un solide bagage scientifique et technique, ainsi que d'une rigueur et d'une grande capacité de travail. De plus, mon implication volontaire au sein du Service National Universel (SNU) a forgé mon esprit d'équipe et mon sens de l'engagement. Enfin, un stage d'observation réalisé chez Skydome m'a permis de découvrir le fonctionnement d'une entreprise industrielle et de ses différents corps de métiers, renforçant ainsi mon ambition de devenir ingénieur.
+            <p class="mb-8">
+                Actuellement étudiant en deuxième année de Classe Préparatoire aux Grandes Écoles (CPGE) filière TSI au Lycée Louis-Thuillier d'Amiens, je prépare activement mon intégration en école d'ingénieur pour la rentrée prochaine. C'est dans ce cadre que je vous soumets ma candidature, à la recherche d'une alternance en supply chain et logistique débutant en septembre 2027, qui me permettra d'allier l'exigence académique de ma formation à une expérience professionnelle concrète au sein de vos équipes.
             </p>
 
-            <p class="mb-6">
+            <p class="mb-8">
+                Mon parcours en classe préparatoire m'a doté d'un solide bagage scientifique et technique, ainsi que d'une grande capacité d'analyse et de synthèse. De plus, mon implication volontaire au sein du Service National Universel (SNU) a forgé mon esprit d'équipe et mon sens de l'engagement. Enfin, un stage d'observation réalisé chez Skydome m'a permis de découvrir le fonctionnement d'une entreprise industrielle et de ses différents corps de métiers, renforçant ainsi mon ambition de devenir ingénieur et éveillant mon intérêt pour la gestion opérationnelle et l'optimisation des flux.
+            </p>
+
+            <p class="mb-8">
                 Je souhaite aujourd'hui rejoindre une structure reconnue comme la vôtre, dont les enjeux font écho à mes aspirations professionnelles dans le domaine de la logistique. L'amélioration continue des processus, la coordination des ressources et la performance de la chaîne d'approvisionnement sont des défis auxquels je souhaite contribuer. Intégrer votre entreprise représente pour moi une opportunité unique d'apporter ma motivation, mon dynamisme et mon souci du détail, tout en développant de nouvelles compétences sous l'encadrement de vos professionnels aguerris.
             </p>
 
-            <p class="mb-6">
+            <p class="mb-8">
                 Patient et doté d'une forte capacité d'adaptation, je suis prêt à m'investir pleinement dans les missions que vous voudrez bien me confier. Je me tiens à votre entière disposition pour un entretien afin d'échanger plus en détail sur mon profil.
             </p>
 
-            <p class="mb-12">
+            <p class="mb-14">
                 Je vous prie d'agréer, Madame, Monsieur, l'expression de mes salutations distinguées.
             </p>
 
-            <p class="mb-6 font-bold">
+            <p class="mb-6 font-bold text-[15px]">
                 Théotime CAMET
             </p>
         </div>
