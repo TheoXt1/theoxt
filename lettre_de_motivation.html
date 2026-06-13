@@ -8,7 +8,7 @@
     <style>
         /* Styles de base pour imiter une page A4 */
         body {
-            background-color: #525659; /* Couleur de fond d'un lecteur PDF classique */
+            background-color: #525659;
             font-family: Arial, Helvetica, sans-serif;
             display: flex;
             justify-content: center;
@@ -22,30 +22,43 @@
             background: white;
             width: 210mm;
             min-height: 297mm;
-            padding: 25mm 25mm; /* Marges latérales augmentées pour aérer */
+            padding: 25mm 25mm;
             box-shadow: 0 4px 8px rgba(0,0,0,0.2);
             box-sizing: border-box;
             position: relative;
         }
 
-        /* Barre bleue décorative */
         .barre-couleur {
             height: 4px;
-            background-color: #2546f0; /* Bleu du CV */
+            background-color: #2546f0;
             width: 100%;
-            margin-bottom: 2.5rem; /* Espace accentué sous la barre */
+            margin-bottom: 2.5rem;
         }
 
         .barre-couleur-bas {
             height: 4px;
             background-color: #2546f0;
-            width: calc(100% - 50mm); /* Ajusté aux nouvelles marges de 25mm */
+            width: calc(100% - 50mm);
             position: absolute;
             bottom: 25mm;
             left: 25mm;
         }
 
-        /* Optimisation pour l'impression */
+        /* Effets visuels pour indiquer les zones modifiables au survol */
+        [contenteditable="true"] {
+            outline: none;
+            transition: background-color 0.2s, box-shadow 0.2s;
+            border-radius: 4px;
+            padding: 2px 4px;
+            margin: -2px -4px; /* Compense le padding pour ne pas décaler le texte */
+        }
+        
+        [contenteditable="true"]:hover, [contenteditable="true"]:focus {
+            background-color: #f8fafc;
+            box-shadow: 0 0 0 1px #cbd5e1 dashed;
+        }
+
+        /* Optimisation pour l'impression (Désactive les effets visuels) */
         @media print {
             body {
                 background-color: white;
@@ -57,70 +70,68 @@
                 width: 100%;
                 height: 100%;
             }
+            [contenteditable="true"]:hover, [contenteditable="true"]:focus {
+                background-color: transparent;
+                box-shadow: none;
+            }
         }
     </style>
 </head>
 <body>
 
     <div class="page-a4">
-        <!-- Ligne bleue supérieure -->
         <div class="barre-couleur"></div>
 
-        <!-- En-tête : Coordonnées et Date -->
         <div class="flex justify-between items-start mb-12">
-            <div class="text-[13px] leading-relaxed text-gray-600">
+            <div class="text-[13px] leading-relaxed text-gray-600" contenteditable="true">
                 <p class="font-bold text-gray-800 text-[14px] mb-1.5">Théotime Camet</p>
                 <p>9 Rue des Tanneries</p>
                 <p>80500 Montdidier</p>
                 <p class="mt-0.5">06 41 49 57 22</p>
-                <a href="mailto:theotimecamet2006@gmail.com" style="color: #2546f0;" class="hover:underline mt-0.5 block">theotimecamet2006@gmail.com</a>
+                <p style="color: #2546f0;" class="mt-0.5">theotimecamet2006@gmail.com</p>
             </div>
-            <div class="text-[13px] font-bold text-gray-800 mt-1">
+            <div class="text-[13px] font-bold text-gray-800 mt-1" contenteditable="true">
                 10 Juin 2026
             </div>
         </div>
 
-        <!-- Destinataire -->
-        <div class="text-[13px] text-gray-800 mb-10 ml-auto w-1/2">
+        <div class="text-[13px] text-gray-800 mb-10 ml-auto w-1/2" contenteditable="true">
             <p class="font-bold">À l'attention du Responsable du Recrutement</p>
-            <p class="font-bold"></p>
+            <p class="font-bold">[Nom de l'entreprise]</p>
         </div>
 
-        <!-- Objet -->
-        <div class="text-[13px] font-bold text-gray-800 mb-12">
+        <div class="text-[13px] font-bold text-gray-800 mb-12" contenteditable="true">
             <span style="color: #2546f0;">Objet :</span> Candidature pour une alternance en école d'ingénieur – Supply Chain et Logistique
         </div>
 
-        <!-- Corps de la lettre -->
         <div class="text-[14px] text-gray-800 leading-[1.8] text-justify">
-            <p class="mb-8">Madame, Monsieur,</p>
+            <p class="mb-8" contenteditable="true">Madame, Monsieur,</p>
 
-            <p class="mb-8">
-                Actuellement étudiant en deuxième année de Classe Préparatoire aux Grandes Écoles (CPGE) filière TSI au Lycée Louis-Thuillier d'Amiens, je prépare activement mon intégration en école d'ingénieur pour la rentrée prochaine. C'est dans ce cadre que je vous soumets ma candidature, à la recherche d'une alternance en supply chain et logistique débutant en septembre 2027, qui me permettra d'allier l'exigence académique de ma formation à une expérience professionnelle concrète au sein de vos équipes.
+            <p class="mb-8" contenteditable="true">
+                Bientôt étudiant à l'École d'Ingénieurs Jules Verne (EIJV) à Saint-Quentin, je prépare activement mon intégration pour la rentrée prochaine. C'est dans ce cadre que je vous soumets ma candidature, à la recherche d'une alternance en supply chain et logistique débutant en septembre 2027, qui me permettra d'allier l'exigence académique de ma formation à une expérience professionnelle concrète au sein de vos équipes.
             </p>
 
-            <p class="mb-8">
-                Mon parcours en classe préparatoire m'a doté d'un solide bagage scientifique et technique, ainsi que d'une grande capacité d'analyse et de synthèse. De plus, mon implication volontaire au sein du Service National Universel (SNU) a forgé mon esprit d'équipe et mon sens de l'engagement. Enfin, un stage d'observation réalisé chez Skydome m'a permis de découvrir le fonctionnement d'une entreprise industrielle et de ses différents corps de métiers, renforçant ainsi mon ambition de devenir ingénieur et éveillant mon intérêt pour la gestion opérationnelle et l'optimisation des flux.
+            <p class="mb-8" contenteditable="true">
+                Mon parcours m'a doté d'un solide bagage scientifique et technique, ainsi que d'une grande capacité d'analyse et de synthèse. De plus, mon implication volontaire au sein du Service National Universel (SNU) a forgé mon esprit d'équipe et mon sens de l'engagement. Enfin, un stage d'observation réalisé chez Skydome m'a permis de découvrir le fonctionnement d'une entreprise industrielle et de ses différents corps de métiers, renforçant ainsi mon ambition de devenir ingénieur et éveillant mon intérêt pour la gestion opérationnelle et l'optimisation des flux.
             </p>
 
-            <p class="mb-8">
+            <p class="mb-8" contenteditable="true">
                 Je souhaite aujourd'hui rejoindre une structure reconnue comme la vôtre, dont les enjeux font écho à mes aspirations professionnelles dans le domaine de la logistique. L'amélioration continue des processus, la coordination des ressources et la performance de la chaîne d'approvisionnement sont des défis auxquels je souhaite contribuer. Intégrer votre entreprise représente pour moi une opportunité unique d'apporter ma motivation, mon dynamisme et mon souci du détail, tout en développant de nouvelles compétences sous l'encadrement de vos professionnels aguerris.
             </p>
 
-            <p class="mb-8">
+            <p class="mb-8" contenteditable="true">
                 Patient et doté d'une forte capacité d'adaptation, je suis prêt à m'investir pleinement dans les missions que vous voudrez bien me confier. Je me tiens à votre entière disposition pour un entretien afin d'échanger plus en détail sur mon profil.
             </p>
 
-            <p class="mb-14">
+            <p class="mb-14" contenteditable="true">
                 Je vous prie d'agréer, Madame, Monsieur, l'expression de mes salutations distinguées.
             </p>
 
-            <p class="mb-6 font-bold text-[15px]">
+            <p class="mb-6 font-bold text-[15px]" contenteditable="true">
                 Théotime CAMET
             </p>
         </div>
 
-        <!-- Ligne bleue inférieure -->
         <div class="barre-couleur-bas"></div>
     </div>
 
