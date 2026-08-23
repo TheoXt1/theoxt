@@ -1,325 +1,1019 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CV Théotime Camet</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
-        
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #e5e7eb;
-            -webkit-print-color-adjust: exact;
-            print-color-adjust: exact;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DOMAINE — Jeu de Plateau Premium</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg: #0A1613;
+      --bg-deep: #060D0B;
+      --panel: rgba(238,232,214,0.05);
+      --panel-border: rgba(238,232,214,0.10);
+      --ivory: #EFE9DA;
+      --ivory-dim: rgba(239,233,218,0.55);
+      --gold: #D8B26A;
+      --gold-bright: #F0CC85;
+      --ruby: #B14454;
+      --teal: #3E8A73;
+      --wood: #6B4A34;
+      --shadow-deep: 0 24px 60px -20px rgba(0,0,0,0.7);
+    }
+    *{box-sizing:border-box;}
+    html,body{margin:0;padding:0;}
+    body{
+      background: radial-gradient(circle at 20% -10%, rgba(216,178,106,0.10), transparent 45%),
+                  radial-gradient(circle at 100% 110%, rgba(62,138,115,0.12), transparent 50%),
+                  var(--bg);
+      color:var(--ivory);
+      font-family:'Inter',sans-serif;
+      min-height:100vh;
+      overflow-x:hidden;
+    }
+    .font-display{
+      font-family:'Fraunces', serif;
+      font-optical-sizing:auto;
+    }
+    .font-mono{
+      font-family:'JetBrains Mono', monospace;
+    }
 
-        .a4-container {
-            width: 21cm;
-            min-height: 29.7cm;
-            margin: 2rem auto;
-            background: white;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            display: flex;
-            overflow: hidden;
-        }
+    /* ---------- Écran d'accueil ---------- */
+    #menu{
+      min-height:100vh;
+      display:flex; flex-direction:column; align-items:center; justify-content:center; gap:2rem;
+      padding:2rem 1.25rem; text-align:center; position:relative;
+    }
+    .brand-eyebrow{
+      letter-spacing:.4em; text-transform:uppercase; font-size:.65rem;
+      color:var(--gold); opacity:.85;
+    }
+    .brand-title{
+      font-size:clamp(2.6rem, 9vw, 4.6rem); font-weight:600; line-height:1;
+      background:linear-gradient(180deg,#F5E4BC 0%, var(--gold) 55%, #A9803F 100%);
+      -webkit-background-clip:text; background-clip:text; color:transparent;
+      filter: drop-shadow(0 6px 22px rgba(216,178,106,0.25));
+    }
+    .brand-sub{ color:var(--ivory-dim); font-size:.9rem; max-width:26rem; }
 
-        .sidebar {
-            width: 32%;
-            background-color: #f8fafc;
-            border-right: 1px solid #e2e8f0;
-            color: #334155;
-            padding: 2.5rem 2rem;
-        }
+    .glass-card{
+      background:var(--panel); border:1px solid var(--panel-border);
+      backdrop-filter: blur(14px); border-radius:20px;
+    }
 
-        .main-content {
-            width: 68%;
-            padding: 2.5rem 3rem;
-            background-color: #ffffff;
-        }
+    .player-row{
+      display:flex; align-items:center; gap:.6rem;
+      background:rgba(0,0,0,0.25); border:1px solid var(--panel-border);
+      border-radius:14px; padding:.55rem .8rem;
+    }
+    .player-dot{
+      width:.7rem; height:.7rem; border-radius:50%; flex-shrink:0;
+      box-shadow:0 0 0 3px rgba(255,255,255,0.06);
+    }
+    .player-row input{
+      background:transparent; border:none; outline:none;
+      color:var(--ivory); font-family:'Inter'; font-size:.9rem; width:100%;
+    }
 
-        .section-title {
-            color: #2563eb;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-bottom: 1rem;
-            border-bottom: 2px solid #dbeafe;
-            padding-bottom: 0.5rem;
-        }
+    .btn-gold{
+      background:linear-gradient(180deg, var(--gold-bright), var(--gold));
+      color:#1B140A; font-weight:700; border:none; border-radius:999px;
+      padding:.9rem 2.2rem; font-size:1rem; cursor:pointer;
+      box-shadow: 0 14px 30px -10px rgba(216,178,106,0.5);
+      transition: transform .15s ease, box-shadow .15s ease;
+    }
+    .btn-gold:hover{
+      transform:translateY(-2px); box-shadow:0 18px 36px -10px rgba(216,178,106,0.65);
+    }
+    .btn-gold:active{ transform:translateY(0); }
 
-        .sidebar-title {
-            color: #1d4ed8;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-bottom: 1rem;
-            margin-top: 2rem;
-            border-bottom: 1px solid #cbd5e1;
-            padding-bottom: 0.5rem;
-        }
+    .btn-ghost{
+      background:transparent; border:1px solid var(--panel-border);
+      color:var(--ivory-dim); border-radius:999px; padding:.55rem 1.2rem;
+      font-size:.8rem; cursor:pointer; transition: all .15s ease;
+    }
+    .btn-ghost:hover{ color:var(--ivory); border-color:rgba(239,233,218,0.3); }
 
-        .icon-box {
-            width: 24px;
-            text-align: center;
-            margin-right: 0.75rem;
-            color: #3b82f6;
-        }
-        
-        .timeline-dot {
-            position: absolute;
-            left: -5px;
-            top: 6px;
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background-color: #2563eb;
-            border: 2px solid white;
-            box-shadow: 0 0 0 1px #bfdbfe;
-        }
-        
-        .timeline-item {
-            position: relative;
-            padding-left: 1.5rem;
-            border-left: 2px solid #e5e7eb;
-            margin-bottom: 1.5rem;
-        }
+    .toggle-coquin{
+      display:flex; align-items:center; gap:.6rem; font-size:.82rem;
+      padding:.6rem 1.1rem; border-radius:999px; cursor:pointer; user-select:none;
+    }
+    .switch{
+      width:2.4rem; height:1.35rem; border-radius:999px;
+      background:rgba(255,255,255,0.12); position:relative; transition:.2s; flex-shrink:0;
+    }
+    .switch::after{
+      content:''; position:absolute; top:2px; left:2px; width:1.1rem; height:1.1rem;
+      border-radius:50%; background:var(--ivory-dim); transition:.2s;
+    }
+    .switch.on{ background:var(--ruby); }
+    .switch.on::after{ transform:translateX(1.05rem); background:#fff; }
 
-        /* --- Styles pour le mode édition --- */
-        [contenteditable="true"] {
-            outline: none;
-            transition: background-color 0.2s, box-shadow 0.2s;
-            border-radius: 4px;
-            padding: 2px 4px;
-            margin: -2px -4px;
-        }
-        
-        [contenteditable="true"]:hover, [contenteditable="true"]:focus {
-            background-color: rgba(203, 213, 225, 0.3);
-            box-shadow: 0 0 0 1px #cbd5e1 dashed;
-        }
+    /* ---------- Écran de jeu ---------- */
+    #game{
+      display:none; min-height:100vh; padding:1.5rem;
+      grid-template-columns: minmax(0,1fr) 320px; gap:1.75rem;
+      align-items:start; justify-content:center;
+    }
+    @media(min-width:900px){ #game{ display:grid; max-width:1280px; margin:0 auto; } }
+    #game.active{ display:grid; }
+    @media(max-width:899px){ #game.active{ display:flex; flex-direction:column; align-items:center; } }
 
-        /* Instructions d'impression pour avoir un PDF parfait */
-        @media print {
-            body {
-                background-color: white;
-                margin: 0;
-                padding: 0;
-            }
-            .a4-container {
-                margin: 0;
-                box-shadow: none;
-                width: 100%;
-                height: 100%;
-            }
-            .no-print {
-                display: none !important;
-            }
-            /* Désactive les effets visuels d'édition à l'impression */
-            [contenteditable="true"]:hover, [contenteditable="true"]:focus {
-                background-color: transparent;
-                box-shadow: none;
-            }
-        }
-    </style>
+    .table-frame{
+      position:relative; padding:14px; border-radius:28px;
+      background: linear-gradient(155deg, #2A1B10, #150E08 60%);
+      box-shadow: var(--shadow-deep), inset 0 0 0 1px rgba(216,178,106,0.15);
+      width:100%; max-width:640px;
+    }
+    #board{
+      display:grid; gap:3px; position:relative;
+      background: radial-gradient(circle at 50% 50%, #0E211B, #081410 75%);
+      border-radius:18px; padding:10px; aspect-ratio:1/1;
+      box-shadow: inset 0 0 40px rgba(0,0,0,0.6);
+    }
+    .tile{
+      position:relative; border-radius:7px; overflow:hidden;
+      display:flex; flex-direction:column; align-items:center; justify-content:center;
+      background: linear-gradient(160deg, #F3ECDA, #E4DAC0);
+      color:#231A0F; padding:2px; text-align:center;
+      box-shadow: inset 0 0 0 1px rgba(0,0,0,0.08);
+      transition: transform .15s ease, box-shadow .15s ease;
+    }
+    .tile:hover{
+      transform:scale(1.08); z-index:6; box-shadow:0 6px 18px rgba(0,0,0,0.4);
+    }
+    .tile.special{
+      background: linear-gradient(160deg, #14251F, #0C1712); color:var(--gold-bright);
+    }
+    .tile-band{ position:absolute; top:0; left:0; right:0; height:22%; }
+    .tile-icon{ width:44%; height:auto; margin-top:2px; opacity:.85; }
+    .tile-label{ font-size:5.6px; line-height:1.15; font-weight:600; letter-spacing:.01em; padding:0 1px; }
+    .tile-price{ font-size:5px; opacity:.6; font-family:'JetBrains Mono'; }
+
+    .tokens-layer{
+      position:absolute; bottom:2px; right:2px;
+      display:flex; gap:1px; flex-wrap:wrap-reverse; justify-content:flex-end; width:80%;
+    }
+    .token{
+      width:9px; height:9px; border-radius:50%;
+      box-shadow: 0 0 0 1.5px rgba(255,255,255,0.85), 0 2px 4px rgba(0,0,0,0.5);
+      transition: all .45s cubic-bezier(.4,1.4,.4,1);
+    }
+    .owner-strip{ position:absolute; inset-inline:0; bottom:0; height:3px; }
+
+    .center-badge{
+      display:flex; flex-direction:column; align-items:center; justify-content:center; gap:.4rem;
+    }
+    .center-badge .brand-title{ font-size:clamp(1.6rem,4vw,2.4rem); }
+
+    /* ---------- Panneau latéral ---------- */
+    .side-panel{ display:flex; flex-direction:column; gap:1.25rem; width:100%; max-width:340px; }
+    .dice-wrap{ display:flex; flex-direction:column; align-items:center; gap:1rem; padding:1.5rem 1rem; }
+    .dice-pair{ display:flex; gap:1rem; perspective:600px; }
+    .die{
+      width:56px; height:56px; border-radius:14px; position:relative;
+      background:linear-gradient(160deg,#fff,#DDD5C2);
+      box-shadow: 0 10px 22px -6px rgba(0,0,0,0.55), inset 0 0 0 1px rgba(0,0,0,0.08);
+    }
+    .die .pip{
+      position:absolute; width:7px; height:7px; border-radius:50%;
+      background:#241A0F; transform:translate(-50%,-50%);
+    }
+    .die.rolling{ animation: diceRoll .6s cubic-bezier(.3,1.6,.4,1); }
+    @keyframes diceRoll{
+      0%{ transform:rotate(0deg) scale(1); }
+      35%{ transform:rotate(160deg) scale(1.12); }
+      70%{ transform:rotate(300deg) scale(.95); }
+      100%{ transform:rotate(360deg) scale(1); }
+    }
+    .action-row{ display:flex; flex-direction:column; gap:.6rem; width:100%; }
+    .action-row button{ width:100%; }
+    .btn-buy{
+      background:linear-gradient(180deg,#4FA688,var(--teal)); color:#08170F;
+      font-weight:700; border:none; border-radius:999px; padding:.75rem 1rem;
+      cursor:pointer; font-size:.9rem; box-shadow:0 10px 24px -8px rgba(62,138,115,0.55);
+    }
+    .btn-pass{
+      background:rgba(255,255,255,0.06); color:var(--ivory); border:1px solid var(--panel-border);
+      border-radius:999px; padding:.7rem 1rem; cursor:pointer; font-size:.85rem;
+    }
+    .dashboard{ display:flex; flex-direction:column; gap:.6rem; }
+    .player-card{
+      display:flex; align-items:center; justify-content:space-between; gap:.6rem;
+      padding:.7rem .9rem; border-radius:14px;
+      background:rgba(255,255,255,0.03); border:1.5px solid transparent; transition: all .25s ease;
+    }
+    .player-card.active{
+      border-color: var(--gold); background:rgba(216,178,106,0.08);
+    }
+    .player-card .avatar{
+      width:2.1rem; height:2.1rem; border-radius:50%; display:flex; align-items:center; justify-content:center;
+      font-family:'Fraunces'; font-weight:600; font-size:.85rem; color:#12100A; flex-shrink:0;
+    }
+    .player-meta .name{ font-size:.85rem; font-weight:600; }
+    .player-meta .sub{ font-size:.68rem; color:var(--ivory-dim); }
+    .player-balance{ font-family:'JetBrains Mono'; font-weight:700; font-size:.95rem; }
+
+    .log-panel{ font-size:.72rem; color:var(--ivory-dim); max-height:9rem; overflow-y:auto; padding:.9rem 1rem; }
+    .log-panel p{ margin:.15rem 0; }
+    .log-panel::-webkit-scrollbar{ width:4px; }
+    .log-panel::-webkit-scrollbar-thumb{ background:var(--panel-border); border-radius:4px; }
+
+    /* ---------- Modale carte ---------- */
+    #cardOverlay{
+      display:none; position:fixed; inset:0; z-index:60;
+      background:rgba(5,10,8,0.72); backdrop-filter:blur(6px);
+      align-items:center; justify-content:center; padding:1.5rem;
+    }
+    #cardOverlay.active{ display:flex; }
+    .card-box{
+      width:min(320px,90vw); border-radius:22px; padding:2rem 1.6rem; text-align:center;
+      box-shadow: var(--shadow-deep), inset 0 0 0 1px rgba(255,255,255,0.15);
+      animation: cardPop .4s cubic-bezier(.2,.9,.25,1.15);
+    }
+    @keyframes cardPop{
+      from{ opacity:0; transform:scale(.72) rotateX(18deg); }
+      to{ opacity:1; transform:scale(1) rotateX(0); }
+    }
+    .card-eyebrow{ text-transform:uppercase; letter-spacing:.3em; font-size:.62rem; opacity:.85; margin-bottom:.8rem; }
+    .card-icon{ width:2.4rem; height:2.4rem; margin:0 auto .9rem; opacity:.9; }
+    .card-text{ font-family:'Fraunces'; font-size:1.15rem; line-height:1.4; margin-bottom:1.6rem; }
+    .card-close{
+      background:rgba(255,255,255,0.92); color:#1a1a1a; border:none;
+      border-radius:999px; padding:.6rem 1.5rem; font-weight:700; font-size:.8rem; cursor:pointer;
+    }
+
+    ::selection{ background:var(--gold); color:#1a1208; }
+
+    /* ---------- Mode Éditeur ---------- */
+    .link-discreet{
+      background:none; border:none; color:var(--ivory-dim); font-size:.75rem;
+      text-decoration:underline; text-underline-offset:3px; cursor:pointer; letter-spacing:.02em;
+    }
+    .link-discreet:hover{ color:var(--gold-bright); }
+
+    #editorOverlay{
+      display:none; position:fixed; inset:0; z-index:70;
+      background:rgba(4,8,7,0.82); backdrop-filter:blur(8px);
+      align-items:center; justify-content:center; padding:1.25rem;
+    }
+    #editorOverlay.active{ display:flex; }
+    .editor-panel{
+      width:min(760px,94vw); max-height:88vh; display:flex; flex-direction:column;
+      background: linear-gradient(160deg, #14201B, #0C1512); border-radius:22px;
+      box-shadow:var(--shadow-deep), inset 0 0 0 1px rgba(216,178,106,0.14); overflow:hidden;
+    }
+    .editor-header{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:1.25rem 1.5rem .9rem; border-bottom:1px solid var(--panel-border);
+    }
+    .editor-header h2{ margin:0; font-size:1.4rem; }
+    .editor-close{ background:none; border:none; color:var(--ivory-dim); font-size:1.2rem; cursor:pointer; line-height:1; }
+    .editor-close:hover{ color:var(--ivory); }
+
+    .editor-tabs{ display:flex; gap:.4rem; padding:.9rem 1.5rem 0; flex-wrap:wrap; }
+    .editor-tab{
+      background:rgba(255,255,255,0.05); border:1px solid transparent; color:var(--ivory-dim);
+      border-radius:999px; padding:.4rem 1rem; font-size:.76rem; cursor:pointer; transition:.15s;
+    }
+    .editor-tab.active{ background:var(--gold); color:#1B140A; font-weight:700; }
+    .editor-tab:not(.active):hover{ color:var(--ivory); border-color:var(--panel-border); }
+
+    .editor-body{ padding:1.25rem 1.5rem 1.5rem; overflow-y:auto; flex:1; display:flex; flex-direction:column; gap:.6rem; }
+    .editor-section{ display:none; flex-direction:column; gap:.6rem; }
+    .editor-section.active{ display:flex; }
+
+    /* Ligne de case dans l'éditeur (mise à jour pour inclure type select et suppression) */
+    .tile-row{
+      display:grid; grid-template-columns: 6.2rem 1.5fr .75fr .75fr 1.2fr 1.8rem; gap:.5rem; align-items:center;
+      background:rgba(255,255,255,0.03); border:1px solid var(--panel-border); border-radius:12px; padding:.55rem .7rem;
+    }
+    .type-select{
+      background:rgba(0,0,0,0.3); border:1px solid var(--panel-border); border-radius:6px;
+      color:var(--ivory-dim); font-family:'Inter'; font-size:.65rem; padding:.3rem;
+      outline:none; cursor:pointer;
+    }
+    .type-select:focus{ border-color:var(--gold); }
+
+    .field{
+      background:rgba(0,0,0,0.3); border:1px solid var(--panel-border); border-radius:8px;
+      color:var(--ivory); font-family:'Inter'; font-size:.78rem; padding:.4rem .55rem; width:100%; outline:none;
+    }
+    .field:focus{ border-color:var(--gold); }
+    .field-mono{ font-family:'JetBrains Mono'; }
+    .field-disabled{ opacity:.3; }
+
+    .card-editor-row{
+      background:rgba(255,255,255,0.03); border:1px solid var(--panel-border); border-radius:14px;
+      padding:.8rem .9rem; display:flex; flex-direction:column; gap:.5rem;
+    }
+    .card-editor-row .field-label{
+      font-size:.62rem; text-transform:uppercase; letter-spacing:.1em; color:var(--ivory-dim); margin-bottom:.15rem; display:block;
+    }
+    .card-editor-row textarea.field{ resize:vertical; min-height:2.4rem; font-family:'Inter'; }
+    .card-editor-row .coquin-field{ border-color:rgba(177,68,84,0.4); }
+
+    .card-editor-row-top{ display:flex; justify-content:space-between; align-items:center; }
+    .card-remove{ background:none; border:none; color:var(--ivory-dim); font-size:.85rem; cursor:pointer; }
+    .card-remove:hover{ color:var(--ruby); }
+
+    .settings-row{
+      display:flex; align-items:center; justify-content:space-between; gap:1rem;
+      background:rgba(255,255,255,0.03); border:1px solid var(--panel-border); border-radius:12px; padding:.75rem .9rem;
+    }
+    .settings-row .field{ width:8rem; text-align:right; }
+
+    .editor-footer{
+      display:flex; justify-content:space-between; align-items:center; gap:.75rem;
+      padding:1rem 1.5rem; border-top:1px solid var(--panel-border);
+    }
+
+    @media(max-width:680px){
+      .tile-row{ grid-template-columns: 1fr 1fr 2rem; }
+      .type-select{ grid-column:1 / span 2; }
+      .editor-footer{ flex-direction:column; align-items:stretch; }
+      .editor-footer > div{ justify-content:stretch; }
+      .editor-footer button{ flex:1; }
+    }
+  </style>
 </head>
 <body>
 
-    <!-- Bouton pour aider à l'impression (masqué lors de l'impression) -->
-    <div class="text-center mt-6 mb-4 no-print">
-        <button onclick="window.print()" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded shadow">
-            <i class="fas fa-file-pdf mr-2"></i> Enregistrer en PDF / Imprimer
-        </button>
-        <p class="text-sm text-gray-500 mt-2">Astuce : Vous pouvez cliquer sur n'importe quel texte pour le modifier. Cochez "Graphiques d'arrière-plan" pour conserver les couleurs.</p>
+  <!-- Menu Principal -->
+  <div id="menu">
+    <p class="brand-eyebrow">Édition Hot Seat</p>
+    <h1 class="brand-title font-display">Domaine</h1>
+    <p class="brand-sub">Un jeu de propriétés et de fortunes à jouer à plusieurs sur le même écran — plateau personnalisable, cartes à éditer, mode Coquin en option.</p>
+
+    <div class="glass-card" style="padding:1.5rem; width:min(340px,90vw); display:flex; flex-direction:column; gap:.7rem;">
+      <p style="font-size:.68rem; letter-spacing:.15em; text-transform:uppercase; color:var(--ivory-dim); margin:0 0 .2rem;">Joueurs</p>
+      <div id="playerInputs" style="display:flex; flex-direction:column; gap:.5rem;"></div>
+      <button class="btn-ghost" onclick="addPlayer()" style="align-self:flex-start;">+ Ajouter un joueur</button>
     </div>
 
-    <!-- Conteneur principal du CV -->
-    <div class="a4-container">
-        
-        <!-- COLONNE GAUCHE (Claire) -->
-        <aside class="sidebar">
-            <!-- Photo de profil -->
-            <div class="flex justify-center mb-6">
-                <div class="w-32 h-32 rounded-full overflow-hidden border-4 border-white bg-gray-200 shadow-md">
-                    <!-- Ajustement de la position et du zoom de l'image -->
-                    <img src="téléchargement.png" alt="Théotime Camet" class="w-full h-full object-cover object-[center_15%] scale-[1.00]">
-                </div>
-            </div>
+    <label class="toggle-coquin glass-card">
+      <span class="switch" id="coquinSwitch" onclick="toggleCoquin()"></span>
+      <span>Mode Coquin — gages &amp; défis à la place des cartes classiques</span>
+    </label>
 
-            <!-- Coordonnées -->
-            <h2 class="sidebar-title mt-0">Coordonnées</h2>
-            <ul class="space-y-3 text-sm text-slate-600">
-                <li class="flex items-center">
-                    <i class="fas fa-phone icon-box"></i>
-                    <span class="font-medium" contenteditable="true">06 41 49 57 22</span>
-                </li>
-                <li class="flex items-center">
-                    <i class="fas fa-envelope icon-box"></i>
-                    <span class="break-all font-medium" contenteditable="true">theocmt500<br>@gmail.com</span>
-                </li>
-                <li class="flex items-start">
-                    <i class="fas fa-map-marker-alt icon-box mt-1"></i>
-                    <span class="font-medium" contenteditable="true">9 Rue des Tanneries<br>80500 Montdidier</span>
-                </li>
-                <li class="flex items-center">
-                    <i class="fas fa-birthday-cake icon-box"></i>
-                    <span class="font-medium" contenteditable="true">19 ans</span>
-                </li>
-                <li class="flex items-center">
-                    <i class="fas fa-car icon-box"></i>
-                    <span class="font-medium" contenteditable="true">Permis B - Véhiculé</span>
-                </li>
-            </ul>
+    <button class="btn-gold font-display" onclick="startGame()" style="font-size:1.1rem;">Démarrer la partie</button>
+    <button class="link-discreet" onclick="openEditor()">Mode Éditeur — personnaliser le plateau et les cartes</button>
+  </div>
 
-            <!-- Soft Skills / Profil -->
-            <h2 class="sidebar-title">Savoir-être</h2>
-            <ul class="space-y-2 text-sm text-slate-600 font-medium">
-                <li class="flex items-center">
-                    <i class="fas fa-check text-blue-500 mr-2 text-xs"></i> <span contenteditable="true">Motivé et dynamique</span>
-                </li>
-                <li class="flex items-center">
-                    <i class="fas fa-check text-blue-500 mr-2 text-xs"></i> <span contenteditable="true">Patient</span>
-                </li>
-                <li class="flex items-center">
-                    <i class="fas fa-check text-blue-500 mr-2 text-xs"></i> <span contenteditable="true">Souci du détail</span>
-                </li>
-                <li class="flex items-center">
-                    <i class="fas fa-check text-blue-500 mr-2 text-xs"></i> <span contenteditable="true">Capacité d'adaptation</span>
-                </li>
-            </ul>
+  <!-- Editeur -->
+  <div id="editorOverlay">
+    <div class="editor-panel">
+      <div class="editor-header">
+        <h2 class="font-display">Mode Éditeur</h2>
+        <button class="editor-close" onclick="closeEditor()">✕</button>
+      </div>
 
-            <!-- Langues -->
-            <h2 class="sidebar-title">Langues</h2>
-            <ul class="space-y-3 text-sm text-slate-600">
-                <li class="flex justify-between items-center border-b border-slate-200 pb-2">
-                    <span class="font-semibold text-slate-800" contenteditable="true">Français</span>
-                    <span class="text-blue-700 text-xs font-bold uppercase tracking-wider bg-blue-100 px-2 py-1 rounded" contenteditable="true">Maternel</span>
-                </li>
-                <li class="flex justify-between items-center border-b border-slate-200 pb-2">
-                    <span class="font-semibold text-slate-800" contenteditable="true">Anglais</span>
-                    <span class="text-blue-700 text-xs font-bold uppercase tracking-wider bg-blue-100 px-2 py-1 rounded" contenteditable="true">B1</span>
-                </li>
-                <li class="flex justify-between items-center pb-1">
-                    <span class="font-semibold text-slate-800" contenteditable="true">Espagnol</span>
-                    <span class="text-blue-700 text-xs font-bold uppercase tracking-wider bg-blue-100 px-2 py-1 rounded" contenteditable="true">B1</span>
-                </li>
-            </ul>
+      <div class="editor-tabs">
+        <button class="editor-tab active" data-tab="tiles" onclick="switchEditorTab('tiles')">Cases</button>
+        <button class="editor-tab" data-tab="chance" onclick="switchEditorTab('chance')">Chance</button>
+        <button class="editor-tab" data-tab="community" onclick="switchEditorTab('community')">Caisse de Communauté</button>
+        <button class="editor-tab" data-tab="settings" onclick="switchEditorTab('settings')">Réglages</button>
+      </div>
 
-            <!-- Centres d'intérêt -->
-            <h2 class="sidebar-title">Centres d'intérêt</h2>
-            <div class="flex flex-wrap gap-2 text-sm font-medium">
-                <span class="px-3 py-1 bg-white border border-slate-200 text-slate-600 rounded-full shadow-sm" contenteditable="true">Domotique</span>
-                <span class="px-3 py-1 bg-white border border-slate-200 text-slate-600 rounded-full shadow-sm" contenteditable="true">Voyages</span>
-                <span class="px-3 py-1 bg-white border border-slate-200 text-slate-600 rounded-full shadow-sm" contenteditable="true">Sport (Tennis)</span>
-                <span class="px-3 py-1 bg-white border border-slate-200 text-slate-600 rounded-full shadow-sm" contenteditable="true">Course à Pied</span>
-            </div>
-        </aside>
+      <div class="editor-body">
+        <div class="editor-section active" data-section="tiles" id="editorTiles"></div>
+        <div class="editor-section" data-section="chance" id="editorChance"></div>
+        <div class="editor-section" data-section="community" id="editorCommunity"></div>
+        <div class="editor-section" data-section="settings" id="editorSettings"></div>
+      </div>
 
-        <!-- COLONNE DROITE (Blanche) -->
-        <main class="main-content">
-            
-            <!-- En-tête -->
-            <header class="mb-8">
-                <h1 class="text-4xl font-bold text-slate-800 tracking-tight" contenteditable="true">THÉOTIME <span class="text-blue-600">CAMET</span></h1>
-                <h2 class="text-xl text-slate-500 font-medium mt-2" contenteditable="true">Futur étudiant à l'EIJV</h2>
-                <p class="text-blue-600 font-bold mt-1 uppercase tracking-wide text-sm" contenteditable="true">À la recherche d'un job d'été</p>
-            </header>
+      <div class="editor-footer">
+        <span style="font-size:.72rem; color:var(--ivory-dim);">Les modifications ne s'appliquent qu'après enregistrement.</span>
+        <div style="display:flex; gap:.6rem;">
+          <button class="btn-ghost" onclick="closeEditor()">Annuler</button>
+          <button class="btn-gold" style="padding:.6rem 1.4rem; font-size:.85rem;" onclick="saveEditor()">Enregistrer</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
-            <!-- Présentation -->
-            <section class="mb-8 text-slate-600 leading-relaxed text-sm text-justify" contenteditable="true">
-                <p>
-                    Étudiant de 19 ans intégrant prochainement une école d'ingénieur, sérieux et motivé, je recherche un emploi d'été actif et manuel.
-                </p>
-            </section>
-
-            <!-- Expériences Professionnelles -->
-            <section class="mb-8">
-                <h3 class="section-title"><i class="fas fa-briefcase mr-2"></i>Expériences Professionnelles</h3>
-                
-                <div class="ml-2 mt-4">
-                    <div class="timeline-item">
-                        <div class="timeline-dot"></div>
-                        <div class="flex justify-between items-start">
-                            <h4 class="font-bold text-slate-800" contenteditable="true">Services National Universel (SNU)</h4>
-                            <span class="text-xs font-bold text-blue-700 bg-blue-50 px-2 py-1 rounded border border-blue-100" contenteditable="true">Juin 2022</span>
-                        </div>
-                        <p class="text-sm text-slate-600 mt-2" contenteditable="true">
-                            Découverte du monde militaire, apprentissage de la cohésion d'équipe et de l'engagement citoyen.
-                        </p>
-                    </div>
-
-                    <div class="timeline-item">
-                        <div class="timeline-dot"></div>
-                        <div class="flex justify-between items-start">
-                            <h4 class="font-bold text-slate-800" contenteditable="true">Stage d'observation</h4>
-                            <span class="text-xs font-bold text-blue-700 bg-blue-50 px-2 py-1 rounded border border-blue-100" contenteditable="true">Fév. 2021</span>
-                        </div>
-                        <h5 class="text-sm text-slate-500 italic mt-1" contenteditable="true">Skydome (Entreprise de désenfumage) - Sons-et-Ronchères</h5>
-                        <ul class="list-disc list-inside text-sm text-slate-600 mt-2 space-y-1" contenteditable="true">
-                            <li>Découverte de la vie professionnelle et du fonctionnement d'une entreprise industrielle.</li>
-                            <li>Observation active d'une dizaine de corps de métier différents.</li>
-                        </ul>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Formation -->
-            <section>
-                <h3 class="section-title"><i class="fas fa-graduation-cap mr-2"></i>Formation</h3>
-                
-                <div class="ml-2 mt-4">
-                    <!-- Nouvel ajout EIJV -->
-                    <div class="timeline-item">
-                        <div class="timeline-dot"></div>
-                        <div class="flex justify-between items-start">
-                            <h4 class="font-bold text-slate-800" contenteditable="true">École d'Ingénieurs Jules Verne (EIJV)</h4>
-                            <span class="text-xs font-bold text-blue-700 bg-blue-50 px-2 py-1 rounded border border-blue-100" contenteditable="true">Dès Sept. 2026</span>
-                        </div>
-                        <h5 class="text-sm text-slate-500 italic mt-1" contenteditable="true">Saint-Quentin</h5>
-                        <p class="text-sm text-slate-600 mt-1 text-blue-600 font-semibold" contenteditable="true">
-                            Cycle Ingénieur
-                        </p>
-                    </div>
-
-                    <div class="timeline-item">
-                        <div class="timeline-dot"></div>
-                        <div class="flex justify-between items-start">
-                            <h4 class="font-bold text-slate-800" contenteditable="true">CPGE TSI</h4>
-                            <span class="text-xs font-bold text-blue-700 bg-blue-50 px-2 py-1 rounded border border-blue-100" contenteditable="true">2024 - 2026</span>
-                        </div>
-                        <h5 class="text-sm text-slate-500 italic mt-1" contenteditable="true">Lycée Louis-Thuillier, Amiens</h5>
-                    </div>
-
-                    <div class="timeline-item">
-                        <div class="timeline-dot"></div>
-                        <div class="flex justify-between items-start">
-                            <h4 class="font-bold text-slate-800" contenteditable="true">Baccalauréat STI2D</h4>
-                            <span class="text-xs font-bold text-blue-700 bg-blue-50 px-2 py-1 rounded border border-blue-100" contenteditable="true">2021 - 2024</span>
-                        </div>
-                        <h5 class="text-sm text-slate-500 italic mt-1" contenteditable="true">Lycée Jean-Racine, Montdidier</h5>
-                        <p class="text-sm text-slate-600 mt-1 text-blue-600 font-semibold" contenteditable="true">
-                            Obtenu avec Mention Assez Bien
-                        </p>
-                    </div>
-
-                    <div class="timeline-item border-l-transparent pb-0 mb-0">
-                        <div class="timeline-dot"></div>
-                        <div class="flex justify-between items-start">
-                            <h4 class="font-bold text-slate-800" contenteditable="true">Diplôme National du Brevet</h4>
-                            <span class="text-xs font-bold text-blue-700 bg-blue-50 px-2 py-1 rounded border border-blue-100" contenteditable="true">2018 - 2021</span>
-                        </div>
-                        <h5 class="text-sm text-slate-500 italic mt-1" contenteditable="true">Collège Saint-Vincent, Montdidier</h5>
-                        <p class="text-sm text-slate-600 mt-1 text-blue-600 font-semibold" contenteditable="true">
-                            Obtenu avec Mention Bien
-                        </p>
-                    </div>
-                </div>
-            </section>
-
-        </main>
+  <!-- Plateau de jeu -->
+  <div id="game">
+    <div class="table-frame">
+      <div id="board"></div>
     </div>
 
+    <div class="side-panel">
+      <div class="glass-card dice-wrap">
+        <div class="dice-pair">
+          <div class="die" id="die1"></div>
+          <div class="die" id="die2"></div>
+        </div>
+        <div class="action-row">
+          <button class="btn-gold" id="rollBtn" onclick="rollDice()" style="width:100%;">Lancer les dés</button>
+          <button class="btn-buy" id="buyBtn" onclick="buyCurrentTile()" style="display:none;"></button>
+          <button class="btn-pass" id="endBtn" onclick="endTurn()" style="display:none;">Passer le tour</button>
+        </div>
+      </div>
+
+      <div class="glass-card dashboard" style="padding:1rem;" id="dashboard"></div>
+      <div class="glass-card log-panel" id="logBox"></div>
+    </div>
+  </div>
+
+  <!-- Modale Carte -->
+  <div id="cardOverlay">
+    <div class="card-box" id="cardBox">
+      <svg class="card-icon" id="cardIcon" viewBox="0 0 24 24" fill="none"></svg>
+      <p class="card-eyebrow" id="cardDeck"></p>
+      <p class="card-text font-display" id="cardText"></p>
+      <button class="card-close" onclick="closeCard()">J'applique la carte</button>
+    </div>
+  </div>
+
+<script>
+/* ============================================================
+   ICÔNES — SVG inline légers, un par type de case
+============================================================ */
+const ICONS = {
+  go: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 12h13M13 6l6 6-6 6"/></svg>`,
+  jail: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="5" y="4" width="14" height="16" rx="1"/><path d="M9 4v16M13 4v16M17 4v16M5 9h14M5 15h14"/></svg>`,
+  chance: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9.5 9a2.5 2.5 0 1 1 3.4 2.3c-.9.4-1.4 1.1-1.4 2.1v.6" stroke-linecap="round"/><circle cx="12" cy="18" r=".9" fill="currentColor" stroke="none"/></svg>`,
+  community: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 10l9-6 9 6M5 10v9h14v-9M10 19v-5h4v5" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+  tax: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M6 4h9l3 3v13H6z" stroke-linejoin="round"/><path d="M9 12h6M9 15h6M9 9h3"/></svg>`,
+  station: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="5" y="6" width="14" height="10" rx="4"/><circle cx="8.5" cy="19" r="1.2" fill="currentColor" stroke="none"/><circle cx="15.5" cy="19" r="1.2" fill="currentColor" stroke="none"/><path d="M5 11h14"/></svg>`,
+  property: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 10.5 12 4l8 6.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 10v9h12v-9" stroke-linejoin="round"/><path d="M10 19v-5h4v5"/></svg>`,
+};
+
+/* ============================================================
+   CONFIG — reflète la structure du plateau
+============================================================ */
+const CONFIG = {
+  currency: "€", startingBalance: 1500, goSalary: 200,
+  colors: ["#D8B26A", "#3E8A73", "#B14454", "#5A7FBF", "#9A6FD1", "#D98A46"],
+  board: [
+    { id:0, type:"go", name:"Départ" },
+    { id:1, type:"property", name:"Boulevard Belleville", price:60, rent:10, group:"#6B4A34" },
+    { id:2, type:"communityChest", name:"Caisse Communauté" },
+    { id:3, type:"property", name:"Rue Lecourbe", price:60, rent:20, group:"#6B4A34" },
+    { id:4, type:"tax", name:"Impôts", amount:200 },
+    { id:5, type:"station", name:"Gare Montparnasse", price:200, rent:50 },
+    { id:6, type:"property", name:"Rue de Vaugirard", price:100, rent:30, group:"#7FB8CC" },
+    { id:7, type:"chance", name:"Chance" },
+    { id:8, type:"property", name:"Avenue Foch", price:140, rent:40, group:"#C1548A" },
+    { id:9, type:"jail", name:"Prison" },
+    { id:10, type:"property", name:"Rue de Courcelles", price:100, rent:30, group:"#7FB8CC" },
+    { id:11, type:"communityChest", name:"Caisse Communauté" },
+    { id:12, type:"property", name:"Champs-Élysées", price:300, rent:75, group:"#5A7FBF" },
+    { id:13, type:"chance", name:"Chance" },
+  ],
+  chanceCards: [
+    { text:"Avancez jusqu'à la case Départ.", coquinText:"Avancez jusqu'à Départ… et offrez un compliment sincère au joueur à votre droite.", action:{type:"moveTo", target:0} },
+    { text:"La banque vous verse 50€.", coquinText:"Choisissez un joueur : il doit imiter votre animal préféré pendant 10 secondes.", action:{type:"gain", amount:50} },
+    { text:"Allez en prison directement.", coquinText:"Gage : racontez une anecdote gênante, ou payez 100€.", action:{type:"jail"} },
+  ],
+  communityCards: [
+    { text:"Erreur de la banque en votre faveur : +200€.", coquinText:"Le joueur à votre gauche vous doit un compliment.", action:{type:"gain", amount:200} },
+    { text:"Frais de médecin : -50€.", coquinText:"Gage : chantez un couplet, ou payez 50€.", action:{type:"lose", amount:50} },
+    { text:"Vous gagnez le 2e prix de beauté : +100€.", coquinText:"Recevez un massage de 20 secondes offert par un joueur de votre choix.", action:{type:"gain", amount:100} },
+  ],
+};
+
+let state = null;
+let editorDraft = null;
+let editorTab = "tiles";
+
+/* ============================================================
+   MODE ÉDITEUR (Cases Ajoutables)
+============================================================ */
+const TYPE_LABELS = {
+  go: "Départ",
+  jail: "Prison",
+  chance: "Chance",
+  communityChest: "Caisse",
+  tax: "Impôts",
+  station: "Gare",
+  property: "Propriété",
+};
+
+function openEditor(){
+  editorDraft = JSON.parse(JSON.stringify(CONFIG));
+  editorTab = "tiles";
+  document.querySelectorAll(".editor-tab").forEach(t => t.classList.toggle("active", t.dataset.tab === "tiles"));
+  document.querySelectorAll(".editor-section").forEach(s => s.classList.toggle("active", s.dataset.section === "tiles"));
+  
+  renderEditorTiles();
+  renderEditorCards("chanceCards", "editorChance");
+  renderEditorCards("communityCards", "editorCommunity");
+  renderEditorSettings();
+  document.getElementById("editorOverlay").classList.add("active");
+}
+
+function closeEditor(){
+  document.getElementById("editorOverlay").classList.remove("active");
+}
+
+function switchEditorTab(tab){
+  editorTab = tab;
+  document.querySelectorAll(".editor-tab").forEach(t => t.classList.toggle("active", t.dataset.tab === tab));
+  document.querySelectorAll(".editor-section").forEach(s => s.classList.toggle("active", s.dataset.section === tab));
+}
+
+// Fonction utilitaire pour s'assurer que les propriétés d'une case concordent avec son type
+function changeTileType(idx, newType) {
+  editorDraft.board[idx].type = newType;
+  
+  if (newType === 'property' || newType === 'station') {
+    if(!editorDraft.board[idx].price) editorDraft.board[idx].price = 100;
+    if(!editorDraft.board[idx].rent) editorDraft.board[idx].rent = 20;
+    if(newType === 'property' && !editorDraft.board[idx].group) editorDraft.board[idx].group = "#5A7FBF";
+  } else {
+    delete editorDraft.board[idx].price;
+    delete editorDraft.board[idx].rent;
+    delete editorDraft.board[idx].group;
+  }
+  
+  renderEditorTiles();
+}
+
+function addTile() {
+  const maxId = editorDraft.board.length > 0 ? Math.max(...editorDraft.board.map(t => t.id)) : -1;
+  editorDraft.board.push({
+    id: maxId + 1,
+    type: "property",
+    name: "Nouvelle Propriété",
+    price: 100,
+    rent: 20,
+    group: "#5A7FBF"
+  });
+  renderEditorTiles();
+}
+
+function removeTile(idx) {
+  editorDraft.board.splice(idx, 1);
+  renderEditorTiles();
+}
+
+function renderEditorTiles(){
+  const wrap = document.getElementById("editorTiles");
+  wrap.innerHTML = `<p style="font-size:.72rem; color:var(--ivory-dim); margin:0 0 .3rem;">Gérez vos cases. Modifiez leur type via le menu déroulant.</p>`;
+  
+  editorDraft.board.forEach((tile, idx) => {
+    const editable = tile.type === "property" || tile.type === "station";
+    const row = document.createElement("div");
+    row.className = "tile-row";
+    
+    // Génération du select
+    const typeOptions = Object.entries(TYPE_LABELS).map(([k, v]) => 
+      `<option value="${k}" ${tile.type === k ? "selected" : ""}>${v}</option>`
+    ).join("");
+
+    row.innerHTML = `
+      <select class="type-select" onchange="changeTileType(${idx}, this.value)">
+        ${typeOptions}
+      </select>
+      <input class="field" value="${escapeHtml(tile.name)}" onchange="editorDraft.board[${idx}].name=this.value" placeholder="Nom de la case" />
+      <input class="field field-mono ${editable?"":"field-disabled"}" ${editable?"":"disabled"} type="number" value="${tile.price ?? ""}" placeholder="Prix" onchange="editorDraft.board[${idx}].price=Number(this.value)" />
+      <input class="field field-mono ${editable?"":"field-disabled"}" ${editable?"":"disabled"} type="number" value="${tile.rent ?? ""}" placeholder="Loyer" onchange="editorDraft.board[${idx}].rent=Number(this.value)" />
+      <input class="field ${editable?"":"field-disabled"}" ${editable?"":"disabled"} type="text" value="${tile.group ?? ""}" placeholder="Couleur (#hex)" onchange="editorDraft.board[${idx}].group=this.value" />
+      <button class="card-remove" title="Supprimer la case" onclick="removeTile(${idx})" style="margin:auto;">✕</button>
+    `;
+    wrap.appendChild(row);
+  });
+
+  const addBtn = document.createElement("button");
+  addBtn.className = "btn-ghost";
+  addBtn.style.alignSelf = "flex-start";
+  addBtn.style.marginTop = ".5rem";
+  addBtn.textContent = "+ Ajouter une case";
+  addBtn.onclick = addTile;
+  wrap.appendChild(addBtn);
+}
+
+function renderEditorCards(deckKey, containerId){
+  const wrap = document.getElementById(containerId);
+  wrap.innerHTML = `<p style="font-size:.72rem; color:var(--ivory-dim); margin:0 0 .3rem;">Texte classique et texte Mode Coquin pour chaque carte.</p>`;
+  editorDraft[deckKey].forEach((card, idx) => {
+    const row = document.createElement("div");
+    row.className = "card-editor-row";
+    row.innerHTML = `
+      <div class="card-editor-row-top">
+        <span class="field-label" style="margin:0;">Carte ${idx + 1}</span>
+        <button class="card-remove" onclick="removeCard('${deckKey}', ${idx})">Supprimer</button>
+      </div>
+      <div>
+        <span class="field-label">Texte classique</span>
+        <textarea class="field" onchange="editorDraft.${deckKey}[${idx}].text=this.value">${escapeHtml(card.text)}</textarea>
+      </div>
+      <div>
+        <span class="field-label">Texte Mode Coquin</span>
+        <textarea class="field coquin-field" onchange="editorDraft.${deckKey}[${idx}].coquinText=this.value">${escapeHtml(card.coquinText || "")}</textarea>
+      </div>
+    `;
+    wrap.appendChild(row);
+  });
+  const addBtn = document.createElement("button");
+  addBtn.className = "btn-ghost"; addBtn.style.alignSelf = "flex-start";
+  addBtn.textContent = "+ Ajouter une carte";
+  addBtn.onclick = () => addCard(deckKey, containerId);
+  wrap.appendChild(addBtn);
+}
+
+function addCard(deckKey, containerId){
+  editorDraft[deckKey].push({
+    text:"Nouvelle carte…", coquinText:"Nouveau gage…", action:{type:"gain", amount:0}
+  });
+  renderEditorCards(deckKey, containerId);
+}
+
+function removeCard(deckKey, idx){
+  editorDraft[deckKey].splice(idx, 1);
+  renderEditorCards(deckKey, deckKey === "chanceCards" ? "editorChance" : "editorCommunity");
+}
+
+function renderEditorSettings(){
+  const wrap = document.getElementById("editorSettings");
+  wrap.innerHTML = "";
+  const rows = [
+    ["Devise", "currency", "text"],
+    ["Solde de départ", "startingBalance", "number"],
+    ["Salaire case Départ", "goSalary", "number"],
+  ];
+  rows.forEach(([label, key, type]) => {
+    const row = document.createElement("div");
+    row.className = "settings-row";
+    row.innerHTML = `
+      <span>${label}</span>
+      <input class="field field-mono" type="${type}" value="${editorDraft[key]}" onchange="editorDraft.${key}=${type==='number' ? "Number(this.value)" : "this.value"}" />
+    `;
+    wrap.appendChild(row);
+  });
+}
+
+function saveEditor(){
+  CONFIG.board = editorDraft.board;
+  CONFIG.chanceCards = editorDraft.chanceCards;
+  CONFIG.communityCards = editorDraft.communityCards;
+  CONFIG.currency = editorDraft.currency;
+  CONFIG.startingBalance = editorDraft.startingBalance;
+  CONFIG.goSalary = editorDraft.goSalary;
+  closeEditor();
+}
+
+function escapeHtml(str){
+  return String(str ?? "").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+}
+
+/* ============================================================
+   ÉCRAN D'ACCUEIL
+============================================================ */
+function addPlayer(){
+  const wrap = document.getElementById("playerInputs");
+  const i = wrap.children.length;
+  if (i >= 6) return;
+  const color = CONFIG.colors[i % CONFIG.colors.length];
+  const row = document.createElement("div");
+  row.className = "player-row";
+  row.innerHTML = `<span class="player-dot" style="background:${color}"></span><input value="Joueur ${i+1}" />`;
+  wrap.appendChild(row);
+}
+addPlayer(); addPlayer();
+
+function toggleCoquin(){
+  document.getElementById("coquinSwitch").classList.toggle("on");
+}
+
+function initials(name){
+  return name.trim().split(/\s+/).map(w=>w[0]).slice(0,2).join("").toUpperCase() || "?";
+}
+
+function startGame(){
+  const rows = [...document.getElementById("playerInputs").children];
+  const names = rows.map(r => r.querySelector("input").value || "Joueur");
+  const coquin = document.getElementById("coquinSwitch").classList.contains("on");
+  
+  state = {
+    coquin,
+    players: names.map((name,i) => ({
+      name, color: CONFIG.colors[i % CONFIG.colors.length], position:0, balance: CONFIG.startingBalance, bankrupt:false
+    })),
+    current:0, ownership:{}, log:[], pendingTile:null, pendingCardAction:null,
+  };
+  
+  document.getElementById("menu").style.display = "none";
+  document.getElementById("game").classList.add("active");
+  renderBoard();
+  renderDashboard();
+  log(`La partie commence avec ${state.players.length} joueur(s).${coquin ? " Mode Coquin activé 😏" : ""}`);
+}
+
+/* ============================================================
+   PLATEAU
+============================================================ */
+function gridPos(i, perSide){
+  const size = perSide + 1;
+  const side = Math.floor(i / perSide);
+  const p = i % perSide;
+  if (side === 0) return { col: size - p, row: size };
+  if (side === 1) return { col: 1, row: size - p };
+  if (side === 2) return { col: p + 1, row: 1 };
+  return { col: size, row: p + 1 };
+}
+
+function tileIconKey(tile){
+  if (tile.type === "communityChest") return "community";
+  if (["go","jail","chance","tax","station","property"].includes(tile.type)) return tile.type;
+  return "property";
+}
+
+function renderBoard(){
+  const board = document.getElementById("board");
+  board.innerHTML = "";
+  const total = CONFIG.board.length;
+  
+  // Algorithme de redimensionnement dynamique basé sur le nombre de cases (s'adapte à l'ajout de cases)
+  const perSide = Math.ceil(total / 4);
+  board.style.gridTemplateColumns = `repeat(${perSide + 1}, minmax(0,1fr))`;
+  board.style.gridTemplateRows = `repeat(${perSide + 1}, minmax(0,1fr))`;
+  
+  CONFIG.board.forEach((tile, i) => {
+    const pos = gridPos(i, perSide);
+    const div = document.createElement("div");
+    div.id = "tile-" + tile.id;
+    div.className = "tile" + (["go","jail","chance","communityChest","tax","station"].includes(tile.type) ? " special" : "");
+    div.style.gridColumn = pos.col;
+    div.style.gridRow = pos.row;
+    
+    let html = "";
+    if (tile.group) html += `<div class="tile-band" style="background:${tile.group}"></div>`;
+    html += `<svg class="tile-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">${ICONS[tileIconKey(tile)].replace(/<svg[^>]*>|<\/svg>/g,"")}</svg>`;
+    html += `<span class="tile-label">${tile.name}</span>`;
+    if (tile.price) html += `<span class="tile-price">${tile.price}${CONFIG.currency}</span>`;
+    html += `<div class="tokens-layer"></div>`;
+    
+    div.innerHTML = html;
+    board.appendChild(div);
+  });
+  
+  const center = document.createElement("div");
+  center.className = "center-badge";
+  center.style.gridColumn = `2 / span ${perSide - 1}`;
+  center.style.gridRow = `2 / span ${perSide - 1}`;
+  center.innerHTML = `
+    <p class="brand-eyebrow">Hot Seat</p>
+    <h2 class="brand-title font-display">Domaine</h2>`;
+  board.appendChild(center);
+  
+  placeTokens();
+}
+
+function placeTokens(){
+  document.querySelectorAll(".tokens-layer").forEach(t => t.innerHTML = "");
+  state.players.forEach(p => {
+    if (p.bankrupt) return;
+    const holder = document.querySelector(`#tile-${p.position} .tokens-layer`);
+    if (holder){
+      const dot = document.createElement("span");
+      dot.className = "token";
+      dot.style.background = p.color;
+      holder.appendChild(dot);
+    }
+  });
+}
+
+/* ============================================================
+   PANNEAU JOUEURS
+============================================================ */
+function renderDashboard(){
+  const dash = document.getElementById("dashboard");
+  dash.innerHTML = "";
+  state.players.forEach((p,i) => {
+    const active = i === state.current;
+    const card = document.createElement("div");
+    card.className = "player-card" + (active ? " active" : "");
+    card.style.opacity = p.bankrupt ? .35 : 1;
+    card.innerHTML = `
+      <div style="display:flex; align-items:center; gap:.6rem;">
+        <span class="avatar" style="background:${p.color}">${initials(p.name)}</span>
+        <div class="player-meta">
+          <p class="name">${p.name}</p>
+          <p class="sub">${propertyCount(i)} propriété(s)${active ? " · à vous de jouer" : ""}</p>
+        </div>
+      </div>
+      <span class="player-balance">${p.balance}${CONFIG.currency}</span>`;
+    dash.appendChild(card);
+  });
+}
+
+function propertyCount(playerIdx){
+  return Object.values(state.ownership).filter(o => o === playerIdx).length;
+}
+
+function log(msg){
+  state.log.unshift(msg);
+  document.getElementById("logBox").innerHTML = state.log.slice(0,10).map(l=>`<p>· ${l}</p>`).join("");
+}
+
+/* ============================================================
+   DÉS + DÉPLACEMENT
+============================================================ */
+function paintDie(el, value){
+  el.innerHTML = "";
+  const layouts = {
+    1:[[50,50]],
+    2:[[27,27],[73,73]],
+    3:[[27,27],[50,50],[73,73]],
+    4:[[27,27],[73,27],[27,73],[73,73]],
+    5:[[27,27],[73,27],[50,50],[27,73],[73,73]],
+    6:[[27,27],[73,27],[27,50],[73,50],[27,73],[73,73]],
+  };
+  layouts[value].forEach(([x,y]) => {
+    const pip = document.createElement("span");
+    pip.className = "pip";
+    pip.style.left = x + "%";
+    pip.style.top = y + "%";
+    el.appendChild(pip);
+  });
+}
+paintDie(document.getElementById("die1"), 1);
+paintDie(document.getElementById("die2"), 1);
+
+function rollDice(){
+  document.getElementById("rollBtn").disabled = true;
+  document.getElementById("buyBtn").style.display = "none";
+  document.getElementById("endBtn").style.display = "none";
+  
+  const d1 = document.getElementById("die1"), d2 = document.getElementById("die2");
+  d1.classList.add("rolling"); d2.classList.add("rolling");
+  
+  setTimeout(() => {
+    const r1 = 1 + Math.floor(Math.random()*6), r2 = 1 + Math.floor(Math.random()*6);
+    paintDie(d1, r1); paintDie(d2, r2);
+    d1.classList.remove("rolling"); d2.classList.remove("rolling");
+    movePlayerStepwise(r1 + r2, r1 === r2);
+  }, 600);
+}
+
+function movePlayerStepwise(steps, isDouble){
+  const p = state.players[state.current];
+  const total = CONFIG.board.length;
+  let moved = 0;
+  
+  const step = () => {
+    p.position = (p.position + 1) % total;
+    moved++;
+    
+    if (p.position === 0){
+      p.balance += CONFIG.goSalary;
+      log(`${p.name} passe par Départ (+${CONFIG.goSalary}${CONFIG.currency}).`);
+      renderDashboard();
+    }
+    
+    placeTokens();
+    if (moved < steps) setTimeout(step, 110);
+    else resolveTile(p.position, isDouble);
+  };
+  step();
+}
+
+/* ============================================================
+   RÉSOLUTION DE CASE
+============================================================ */
+function resolveTile(tileId, isDouble){
+  const tile = CONFIG.board[tileId];
+  const p = state.players[state.current];
+  
+  if (tile.type === "property" || tile.type === "station"){
+    const ownerIdx = state.ownership[tile.id]; // utilisation de tile.id car on a pu modifier l'index
+    
+    if (ownerIdx === undefined){
+      state.pendingTile = tile.id;
+      const buyBtn = document.getElementById("buyBtn");
+      buyBtn.style.display = "block";
+      buyBtn.textContent = `Acheter ${tile.name} — ${tile.price}${CONFIG.currency}`;
+      log(`${p.name} arrive sur ${tile.name} (libre).`);
+    } else if (ownerIdx !== state.current){
+      const owner = state.players[ownerIdx];
+      p.balance -= tile.rent;
+      owner.balance += tile.rent;
+      log(`${p.name} paie ${tile.rent}${CONFIG.currency} de loyer à ${owner.name}.`);
+      renderDashboard();
+    } else {
+      log(`${p.name} est sur sa propre propriété.`);
+    }
+  } else if (tile.type === "tax"){
+    const t_amount = tile.amount || 150; // fallback de sécurité
+    p.balance -= t_amount;
+    log(`${p.name} paie ${t_amount}${CONFIG.currency} d'impôts.`);
+    renderDashboard();
+  } else if (tile.type === "chance"){
+    if(CONFIG.chanceCards.length > 0)
+      drawCard(CONFIG.chanceCards, "Chance", "linear-gradient(160deg,#F0CC85,#B98A3D)", "#241A0A", "chance");
+  } else if (tile.type === "communityChest"){
+    if(CONFIG.communityCards.length > 0)
+      drawCard(CONFIG.communityCards, "Caisse de Communauté", "linear-gradient(160deg,#4FA688,#2C6B57)", "#08170F", "community");
+  } else if (tile.type === "go"){
+    log(`${p.name} est sur la case Départ.`);
+  } else if (tile.type === "jail"){
+    log(`${p.name} est en simple visite à la prison.`);
+  }
+  
+  document.getElementById("endBtn").style.display = "block";
+  document.getElementById("rollBtn").disabled = false;
+  if (isDouble) log(`${p.name} a fait un double — il rejoue !`);
+}
+
+function buyCurrentTile(){
+  const tileId = state.pendingTile;
+  const tile = CONFIG.board.find(t => t.id === tileId);
+  const p = state.players[state.current];
+  
+  if (p.balance < tile.price){
+    log(`${p.name} n'a pas assez d'argent pour acheter.`);
+    return;
+  }
+  
+  p.balance -= tile.price;
+  state.ownership[tileId] = state.current;
+  log(`${p.name} achète ${tile.name}.`);
+  
+  document.getElementById("buyBtn").style.display = "none";
+  renderDashboard();
+  markOwnership(tileId, p.color);
+}
+
+function markOwnership(tileId, color){
+  const t = document.getElementById("tile-"+tileId);
+  if (!t) return;
+  let strip = t.querySelector(".owner-strip");
+  if (!strip){
+    strip = document.createElement("div");
+    strip.className = "owner-strip";
+    t.appendChild(strip);
+  }
+  strip.style.background = color;
+}
+
+/* ============================================================
+   CARTES
+============================================================ */
+function drawCard(deck, label, bg, textColor, iconKey){
+  const card = deck[Math.floor(Math.random()*deck.length)];
+  const text = state.coquin ? card.coquinText : card.text;
+  
+  document.getElementById("cardDeck").textContent = label + (state.coquin ? " · Mode Coquin" : "");
+  document.getElementById("cardText").textContent = text;
+  
+  const box = document.getElementById("cardBox");
+  box.style.background = bg;
+  box.style.color = textColor;
+  
+  const icon = document.getElementById("cardIcon");
+  icon.style.color = textColor;
+  icon.innerHTML = ICONS[iconKey].replace(/<svg[^>]*>|<\/svg>/g,"");
+  
+  document.getElementById("cardOverlay").classList.add("active");
+  state.pendingCardAction = state.coquin ? null : card.action;
+}
+
+function closeCard(){
+  document.getElementById("cardOverlay").classList.remove("active");
+  const action = state.pendingCardAction;
+  const p = state.players[state.current];
+  
+  if (action){
+    if (action.type === "gain") p.balance += action.amount;
+    if (action.type === "lose") p.balance -= action.amount;
+    if (action.type === "moveTo"){
+      // on cherche l'index d'affichage pour les jetons, car moveTo cible ID ou index
+      const targetIndex = CONFIG.board.findIndex(t => t.id === action.target);
+      p.position = targetIndex >= 0 ? targetIndex : 0; 
+      placeTokens();
+    }
+    if (action.type === "jail"){
+      const jailIndex = CONFIG.board.findIndex(t => t.type === "jail");
+      p.position = jailIndex >= 0 ? jailIndex : 0; // Si plus de prison, on va à départ 
+      placeTokens();
+      log(`${p.name} est envoyé en prison !`);
+    }
+    renderDashboard();
+  }
+}
+
+/* ============================================================
+   FIN DE TOUR
+============================================================ */
+function endTurn(){
+  document.getElementById("endBtn").style.display = "none";
+  document.getElementById("buyBtn").style.display = "none";
+  
+  let next = (state.current + 1) % state.players.length;
+  let guard = 0;
+  while (state.players[next].bankrupt && guard < state.players.length){
+    next = (next+1) % state.players.length;
+    guard++;
+  }
+  state.current = next;
+  renderDashboard();
+  log(`Au tour de ${state.players[state.current].name}.`);
+}
+</script>
 </body>
 </html>
